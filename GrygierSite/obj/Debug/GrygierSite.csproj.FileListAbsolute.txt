@@ -83,3 +83,4 @@ D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.pdb
 D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.Init.resources
 D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.csproj.GenerateResource.Cache
 D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.CreateProductTable.resources
+D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.PopulateCategoriesTable.resources
