@@ -1,0 +1,29 @@
+﻿@model GrygierSite.ViewModels.ProductFormViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Add new product</h2>
+
+@using (Html.BeginForm("Create", "Admin"))
+{
+    <div class="form-group">
+        @Html.LabelFor(p => p.Name)
+        @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Description)
+        @Html.TextAreaFor(p => p.Description, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Category)
+        @Html.DropDownListFor(p => p.Category, new SelectList(Model.Categories, "Id", "Name"), "", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.MarketUrl)
+        @Html.TextBoxFor(p => p.MarketUrl, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

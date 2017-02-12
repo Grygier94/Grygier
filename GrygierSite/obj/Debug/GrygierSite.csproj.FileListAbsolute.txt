@@ -84,3 +84,4 @@ D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations
 D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.csproj.GenerateResource.Cache
 D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.CreateProductTable.resources
 D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.PopulateCategoriesTable.resources
+D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.AddMarketUrlColumnToProductTable.resources

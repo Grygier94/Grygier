@@ -20,6 +20,10 @@ namespace GrygierSite.Models
         public DateTime LastUpdate { get; set; }
 
         [Required]
+        [StringLength(1000)]
+        public string MarketUrl { get; set; }
+
+        [Required]
         public Category Category { get; set; }
     }
 }
