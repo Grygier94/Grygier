@@ -37,6 +37,7 @@ namespace GrygierSite.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(ProductFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
