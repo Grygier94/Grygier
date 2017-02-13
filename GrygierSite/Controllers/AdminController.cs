@@ -39,6 +39,12 @@ namespace GrygierSite.Controllers
         [HttpPost]
         public ActionResult Create(ProductFormViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Categories = _context.Categories.Where(c => c.Id != 2).ToList();
+                return View("Create", viewModel);
+            }
+
 
             var product = new Product
             {
