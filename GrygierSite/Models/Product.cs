@@ -24,6 +24,8 @@ namespace GrygierSite.Models
         public string MarketUrl { get; set; }
 
         [Required]
+        public byte CategoryId { get; set; }
+
         public Category Category { get; set; }
     }
 }
