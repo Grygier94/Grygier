@@ -1,0 +1,109 @@
+﻿body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+.navbar-inverse {
+    background-color: #1393de;
+    border-color: #47b9fb;
+}
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+    }
+
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+        background-color: rgba(10, 120, 180, 0.7);
+    }
+
+    .navbar-inverse .navbar-nav > .dropdown > a .caret {
+        border-top-color: #fff;
+        border-bottom-color: #fff;
+    }
+
+    .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {   
+        
+
+        border-bottom: 3px #fff solid;
+        margin-bottom: -3px;
+        padding-bottom: 18px;
+    }
+
+.navbar-brand {
+    font-family: "Sansita";
+    padding: 15px 25px;
+    font-size: 26px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3 {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.navbar-toggle {
+    margin-top: 11px;
+    margin-bottom: 11px;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+textarea.form-control {
+    padding: 12px 14px;
+}
+
+.form-control {
+    padding: 20px 14px;
+    font-size: 17px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
+}
+
+    .form-control:focus {
+        border-color: #8dcbfc;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+.dropdown-menu {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-size: 16px;
+}
+
+    .dropdown-menu > li > a {
+        padding: 8px 20px;
+    }
+
+        .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+            background-color: #1393de;
+        }
+
+.btn {
+    padding: 8px 20px;
+    font-size: 17px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
+}
+
+.btn-primary {
+    background-color: #1393de;
+    border-color: #47b9fb;
+}
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+        background-color: #107bba;
+        border-color: #1393de;
+    }
