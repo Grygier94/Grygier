@@ -8,15 +8,16 @@
 
 @using (Html.BeginForm("Create", "Admin"))
 {
+    <p class="alert alert-info">All fields are required</p>
     @Html.AntiForgeryToken()
     <div class="form-group">
         @Html.LabelFor(p => p.Name)
-        @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(p => p.Name, new { @class = "form-control", autofocus = "autofocus", placeholder = "Fantasy backgrounds" })
         @Html.ValidationMessageFor(p => p.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(p => p.Description)
-        @Html.TextAreaFor(p => p.Description, new { @class = "form-control" })
+        @Html.TextAreaFor(p => p.Description, new { @class = "form-control", placeholder = "The package contains 4 backgrounds in fantasa theme... " })
         @Html.ValidationMessageFor(p => p.Description)
     </div>
     <div class="form-group">
@@ -26,7 +27,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(p => p.MarketUrl)
-        @Html.TextBoxFor(p => p.MarketUrl, new { @class = "form-control" })
+        @Html.TextBoxFor(p => p.MarketUrl, new { @class = "form-control", placeholder = "https://graphicriver.net/..." })
         @Html.ValidationMessageFor(p => p.MarketUrl)
     </div>
 
