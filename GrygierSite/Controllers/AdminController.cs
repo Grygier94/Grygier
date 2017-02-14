@@ -57,7 +57,8 @@ namespace GrygierSite.Controllers
                 DateOfIssue = DateTime.Now,
                 CategoryId = viewModel.Category,
                 MarketUrl = viewModel.MarketUrl,
-                ThumbnailPath = viewModel.GetThumbnailPath()
+                ThumbnailPath = viewModel.GetThumbnailPath(),
+                Price = viewModel.Price
             };
 
             _context.Products.Add(product);

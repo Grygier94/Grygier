@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201702141526438_AddThumbnailPathToProduct.Designer.cs">
       <DependentUpon>201702141526438_AddThumbnailPathToProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702141804468_AddPriceToProduct.cs" />
+    <Compile Include="Migrations\201702141804468_AddPriceToProduct.Designer.cs">
+      <DependentUpon>201702141804468_AddPriceToProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
@@ -313,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702141526438_AddThumbnailPathToProduct.resx">
       <DependentUpon>201702141526438_AddThumbnailPathToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702141804468_AddPriceToProduct.resx">
+      <DependentUpon>201702141804468_AddPriceToProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

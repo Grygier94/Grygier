@@ -27,6 +27,8 @@ namespace GrygierSite.ViewModels
         [ImageFormat]
         public HttpPostedFileBase Thumbnail { get; set; }
 
+        public decimal Price { get; set; }
+
         public string GetThumbnailPath()
         {
             return "Content/Images/" + Thumbnail.FileName;

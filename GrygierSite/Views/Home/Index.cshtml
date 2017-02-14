@@ -3,14 +3,19 @@
     ViewBag.Title = "Home Page";
 }
 
-<ul>
+<div class="row">
     @foreach (var product in Model)
     {
-        <li>
-            @product.Name
-        </li>
-        <li>
-            <img src="@product.ThumbnailPath"/>
-        </li>
+        <div class="col-md-4">
+            <a href="#">
+                <div class="thumbnail">
+                    <div class="thumbnail-image-wrapper">
+                        <span class="product-price text-center">@product.Price$</span>
+                        <img class="img-thumbnail img-responsive" src="../@product.ThumbnailPath" />
+                    </div>
+                    <span class="product-name text-center">@product.Name</span>
+                </div>
+            </a>
+        </div>
     }
-</ul>
+</div>

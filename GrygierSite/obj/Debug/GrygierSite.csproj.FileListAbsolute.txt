@@ -87,3 +87,4 @@ D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations
 D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.AddMarketUrlColumnToProductTable.resources
 D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.AddCategoryForeignKeyPropertyToProduct.resources
 D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.AddThumbnailPathToProduct.resources
+D:\VisualStudioProjects\GrygierSite\GrygierSite\obj\Debug\GrygierSite.Migrations.AddPriceToProduct.resources

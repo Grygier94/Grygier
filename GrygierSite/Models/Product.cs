@@ -26,6 +26,8 @@ namespace GrygierSite.Models
         [Required]
         public byte CategoryId { get; set; }
 
+        public decimal Price { get; set; }
+
         public Category Category { get; set; }
 
         [Required]

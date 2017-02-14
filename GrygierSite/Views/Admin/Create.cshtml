@@ -35,6 +35,11 @@
         @Html.TextBoxFor(p => p.MarketUrl, new { @class = "form-control", placeholder = "https://graphicriver.net/..." })
         @Html.ValidationMessageFor(p => p.MarketUrl)
     </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Price)
+        @Html.TextBoxFor(p => p.Price, new { @class = "form-control", placeholder = "0.00" })
+        @Html.ValidationMessageFor(p => p.Price)
+    </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
 }

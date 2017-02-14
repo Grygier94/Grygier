@@ -24,7 +24,7 @@ h1, h2, h3 {
 }
 
 .navbar-inverse {
-    background-color: #1393de;
+    background-color: #3498DB;
     border-color: #47b9fb;
 }
 
@@ -59,7 +59,7 @@ h1, h2, h3 {
     }
 
         .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-            background-color: #1393de;
+            background-color: #3498DB;
         }
 
 textarea.form-control {
@@ -87,14 +87,32 @@ textarea.form-control {
 }
 
 .btn-primary {
-    background-color: #1393de;
-    border-color: #1393de;
+    background-color: #3498DB;
+    border-color: #3498DB;
 }
 
     .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
         background-color: #107bba;
         border-color: #107bba;
     }
+
+.thumbnail {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #E74C3C;
+    padding: 5px;
+    -ms-border-radius: 0;
+    border-radius: 0;
+    text-align: center;
+}
+
+.img-thumbnail {
+    width: 100%;
+    border: none;
+    -ms-border-radius: 0;
+    border-radius: 0;
+}
 
 /* WIDTH > 768 */
 
@@ -105,7 +123,7 @@ textarea.form-control {
         padding-bottom: 20px;
     }
 
-        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
         color: #fff;
         border-bottom: 3px #fff solid;
         margin-bottom: -3px;
@@ -117,8 +135,8 @@ textarea.form-control {
 
 @media (max-width: 767px) {
 
-        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
         color: #fff;
-            background-color: #107bba;
+        background-color: #107bba;
     }
 }
