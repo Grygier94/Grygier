@@ -27,5 +27,9 @@ namespace GrygierSite.Models
         public byte CategoryId { get; set; }
 
         public Category Category { get; set; }
+
+        [Required]
+        [StringLength(1000)]
+        public string ThumbnailPath { get; set; }
     }
 }

@@ -6,7 +6,7 @@
 
 <h2>Add new product</h2>
 
-@using (Html.BeginForm("Create", "Admin"))
+@using (Html.BeginForm("Create", "Admin", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     <p class="alert alert-info">All fields are required</p>
     @Html.AntiForgeryToken()
@@ -24,6 +24,11 @@
         @Html.LabelFor(p => p.Category)
         @Html.DropDownListFor(p => p.Category, new SelectList(Model.Categories, "Id", "Name"), "", new { @class = "form-control" })
         @Html.ValidationMessageFor(p => p.Category)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(p => p.Thumbnail)
+        <input type="file" name="Thumbnail" id="Thumbnail" value="Browse"/>
+        @Html.ValidationMessageFor(p => p.Thumbnail)
     </div>
     <div class="form-group">
         @Html.LabelFor(p => p.MarketUrl)

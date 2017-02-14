@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201702131305549_AddCategoryForeignKeyPropertyToProduct.Designer.cs">
       <DependentUpon>201702131305549_AddCategoryForeignKeyPropertyToProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702141526438_AddThumbnailPathToProduct.cs" />
+    <Compile Include="Migrations\201702141526438_AddThumbnailPathToProduct.Designer.cs">
+      <DependentUpon>201702141526438_AddThumbnailPathToProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Category.cs" />
@@ -280,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -304,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702131305549_AddCategoryForeignKeyPropertyToProduct.resx">
       <DependentUpon>201702131305549_AddCategoryForeignKeyPropertyToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702141526438_AddThumbnailPathToProduct.resx">
+      <DependentUpon>201702141526438_AddThumbnailPathToProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

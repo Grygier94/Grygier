@@ -1,6 +1,7 @@
 ﻿using GrygierSite.Models;
 using GrygierSite.ViewModels;
 using System;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -46,6 +47,7 @@ namespace GrygierSite.Controllers
                 return View("Create", viewModel);
             }
 
+            viewModel.Thumbnail.SaveAs(Path.Combine(Server.MapPath("~/"), viewModel.GetThumbnailPath()));
 
             var product = new Product
             {
@@ -54,7 +56,8 @@ namespace GrygierSite.Controllers
                 LastUpdate = DateTime.Now,
                 DateOfIssue = DateTime.Now,
                 CategoryId = viewModel.Category,
-                MarketUrl = viewModel.MarketUrl
+                MarketUrl = viewModel.MarketUrl,
+                ThumbnailPath = viewModel.GetThumbnailPath()
             };
 
             _context.Products.Add(product);

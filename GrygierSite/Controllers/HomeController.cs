@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GrygierSite.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GrygierSite.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public HomeController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            return View(_context.Products.ToList());
         }
 
         public ActionResult About()
