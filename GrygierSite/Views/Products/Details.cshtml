@@ -15,7 +15,7 @@
 @if (Model.AuthenticatedUser)
 {
     <button class="btn btn-danger js-delete-product" data-product-id="@Model.Id">Delete</button>
-    <button class="btn btn-warning" href="@Url.Action("Edit", "Products", new { id = Model.Id })">Edit</button>
+    <a class="btn btn-warning" href="@Url.Action("Edit", "Products", new { id = Model.Id })">Edit</a>
 }
 <a class="btn btn-success" href="@Model.MarketUrl">Go to Envato Market</a>
 

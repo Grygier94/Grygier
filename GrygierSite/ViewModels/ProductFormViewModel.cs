@@ -7,6 +7,8 @@ namespace GrygierSite.ViewModels
 {
     public class ProductFormViewModel
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
@@ -35,5 +37,20 @@ namespace GrygierSite.ViewModels
         }
 
         public IEnumerable<Category> Categories { get; set; }
+
+        public string Title { get; set; }
+
+        public string Action { get; set; }
+
+        public ProductFormViewModel() { }
+
+        public ProductFormViewModel(Product product)
+        {
+            Name = product.Name;
+            Description = product.Description;
+            Category = product.CategoryId;
+            Price = product.Price;
+            MarketUrl = product.MarketUrl;
+        }
     }
 }

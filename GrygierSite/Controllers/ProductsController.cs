@@ -10,7 +10,7 @@ namespace GrygierSite.Controllers
 {
     public class ProductsController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public ProductsController()
         {
@@ -22,10 +22,12 @@ namespace GrygierSite.Controllers
         {
             var viewModel = new ProductFormViewModel
             {
-                Categories = _context.Categories.Where(c => c.Id != 2).ToList()
+                Categories = _context.Categories.Where(c => c.Id != 2).ToList(),
+                Title = "Add new product",
+                Action = "Create"
             };
 
-            return View(viewModel);
+            return View("ProductForm", viewModel);
         }
 
         [HttpPost]
@@ -36,7 +38,7 @@ namespace GrygierSite.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Categories = _context.Categories.Where(c => c.Id != 2).ToList();
-                return View("Create", viewModel);
+                return View("ProductForm", viewModel);
             }
 
             viewModel.Thumbnail.SaveAs(Path.Combine(Server.MapPath("~/"), viewModel.GetThumbnailPath()));
@@ -65,17 +67,8 @@ namespace GrygierSite.Controllers
                 .Include(p => p.Category)
                 .Single(p => p.Id == id);
 
-            var viewModel = new DetailsViewModel
+            var viewModel = new DetailsViewModel(product)
             {
-                Id = product.Id,
-                Category = product.Category,
-                DateOfIssue = product.DateOfIssue,
-                Description = product.Description,
-                LastUpdate = product.LastUpdate,
-                MarketUrl = product.MarketUrl,
-                Name = product.Name,
-                Price = product.Price,
-                ThumbnailPath = product.ThumbnailPath,
                 AuthenticatedUser = User.Identity.IsAuthenticated
             };
 
@@ -87,9 +80,40 @@ namespace GrygierSite.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            throw new NotImplementedException();
+            var product = _context.Products.Single(p => p.Id == id);
 
-            return View();
+            var viewModel = new ProductFormViewModel(product)
+            {
+                Categories = _context.Categories.Where(c => c.Id != 2).ToList(),
+                Title = "Update product",
+                Action = "Edit"
+            };
+
+            return View("ProductForm", viewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Edit(ProductFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Categories = _context.Categories.Where(c => c.Id != 2).ToList();
+                return View("ProductForm", viewModel);
+            }
+
+            var productFromDb = _context.Products.Single(p => p.Id == viewModel.Id);
+
+            productFromDb.Name = viewModel.Name;
+            productFromDb.Description = viewModel.Description;
+            productFromDb.CategoryId = viewModel.Category;
+            productFromDb.Price = viewModel.Price;
+            productFromDb.MarketUrl = viewModel.MarketUrl;
+            productFromDb.LastUpdate = DateTime.Now;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
