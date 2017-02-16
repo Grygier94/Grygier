@@ -1,0 +1,67 @@
+﻿@model GrygierSite.ViewModels.DetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name - @Model.Category.Name</h2>
+
+<img class="img-responsive" src="~/@Model.ThumbnailPath" />
+
+
+<p>@Model.Description</p>
+
+<h3>@Model.Price$</h3>
+
+@if (Model.AuthenticatedUser)
+{
+    <button class="btn btn-danger js-delete-product" data-product-id="@Model.Id">Delete</button>
+    <button class="btn btn-warning" href="@Url.Action("Edit", "Products", new { id = Model.Id })">Edit</button>
+}
+<a class="btn btn-success" href="@Model.MarketUrl">Go to Envato Market</a>
+
+<p class="pull-right">
+    Last udpate: @Model.LastUpdate
+</p>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-delete-product").click(function (e) {
+                var link = $(e.target);
+
+                bootbox.confirm({
+                    title: "Delete",
+                    message: "Are you sure you want to delete the product?",
+                    buttons: {
+                        confirm: {
+                            label: 'Delete',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'Cancel',
+                            className: 'btn-default'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/products/" + link.attr("data-product-id"),
+                                method: "DELETE"
+                            })
+                        .done(function () {
+                            toastr.success("Product successfully deleted.");
+                            window.location.href = "/home/index";
+                        })
+                        .fail(function () {
+                            toastr.error("Something unexpected happend.");
+                            
+                        });
+                        }
+
+                    }
+                });
+            });
+        });
+    </script>
+}
