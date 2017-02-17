@@ -15,18 +15,5 @@ namespace GrygierSite.ViewModels
         public string ThumbnailPath { get; set; }
         public Category Category { get; set; }
         public bool AuthenticatedUser { get; set; }
-
-        public DetailsViewModel(Product product)
-        {
-            Id = product.Id;
-            Category = product.Category;
-            DateOfIssue = product.DateOfIssue;
-            Description = product.Description;
-            LastUpdate = product.LastUpdate;
-            MarketUrl = product.MarketUrl;
-            Name = product.Name;
-            Price = product.Price;
-            ThumbnailPath = product.ThumbnailPath;
-        }
     }
 }

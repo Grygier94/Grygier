@@ -94,3 +94,5 @@ D:\VisualStudioProjects\GrygierSite\GrygierSite\bin\System.Web.Http.WebHost.dll
 D:\VisualStudioProjects\GrygierSite\GrygierSite\bin\System.Net.Http.Formatting.xml
 D:\VisualStudioProjects\GrygierSite\GrygierSite\bin\System.Web.Http.xml
 D:\VisualStudioProjects\GrygierSite\GrygierSite\bin\System.Web.Http.WebHost.xml
+D:\VisualStudioProjects\GrygierSite\GrygierSite\bin\AutoMapper.dll
+D:\VisualStudioProjects\GrygierSite\GrygierSite\bin\AutoMapper.xml

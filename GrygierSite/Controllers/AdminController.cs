@@ -20,7 +20,7 @@ namespace GrygierSite.Controllers
 
         public ActionResult Dashboard()
         {
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
 

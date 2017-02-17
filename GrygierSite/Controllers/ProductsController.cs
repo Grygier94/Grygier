@@ -1,4 +1,5 @@
-﻿using GrygierSite.Models;
+﻿using AutoMapper;
+using GrygierSite.Models;
 using GrygierSite.ViewModels;
 using System;
 using System.Data.Entity;
@@ -43,17 +44,8 @@ namespace GrygierSite.Controllers
 
             viewModel.Thumbnail.SaveAs(Path.Combine(Server.MapPath("~/"), viewModel.GetThumbnailPath()));
 
-            var product = new Product
-            {
-                Name = viewModel.Name,
-                Description = viewModel.Description,
-                LastUpdate = DateTime.Now,
-                DateOfIssue = DateTime.Now,
-                CategoryId = viewModel.Category,
-                MarketUrl = viewModel.MarketUrl,
-                ThumbnailPath = viewModel.GetThumbnailPath(),
-                Price = viewModel.Price
-            };
+            var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
+            product.LastUpdate = product.DateOfIssue = DateTime.Now;
 
             _context.Products.Add(product);
             _context.SaveChanges();
@@ -67,12 +59,8 @@ namespace GrygierSite.Controllers
                 .Include(p => p.Category)
                 .Single(p => p.Id == id);
 
-            var viewModel = new DetailsViewModel(product)
-            {
-                AuthenticatedUser = User.Identity.IsAuthenticated
-            };
-
-            product.Id = id;
+            var viewModel = Mapper.Map<Product, DetailsViewModel>(product);
+            viewModel.AuthenticatedUser = User.Identity.IsAuthenticated;
 
             return View(viewModel);
         }
@@ -104,11 +92,7 @@ namespace GrygierSite.Controllers
 
             var productFromDb = _context.Products.Single(p => p.Id == viewModel.Id);
 
-            productFromDb.Name = viewModel.Name;
-            productFromDb.Description = viewModel.Description;
-            productFromDb.CategoryId = viewModel.Category;
-            productFromDb.Price = viewModel.Price;
-            productFromDb.MarketUrl = viewModel.MarketUrl;
+            Mapper.Map<ProductFormViewModel, Product>(viewModel, productFromDb);
             productFromDb.LastUpdate = DateTime.Now;
 
             _context.SaveChanges();

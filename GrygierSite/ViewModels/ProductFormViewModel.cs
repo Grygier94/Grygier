@@ -23,7 +23,7 @@ namespace GrygierSite.ViewModels
         public string MarketUrl { get; set; }
 
         [Required]
-        public byte Category { get; set; }
+        public byte CategoryId { get; set; }
 
         [Display(Name = "Thumbnail")]
         [ImageFormat]
@@ -48,7 +48,7 @@ namespace GrygierSite.ViewModels
         {
             Name = product.Name;
             Description = product.Description;
-            Category = product.CategoryId;
+            CategoryId = product.CategoryId;
             Price = product.Price;
             MarketUrl = product.MarketUrl;
         }
