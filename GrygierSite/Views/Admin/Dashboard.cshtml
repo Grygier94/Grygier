@@ -24,16 +24,16 @@
 {
     <script>
         $(document).ready(function () {
-                var table = $("#products").DataTable({
-                    ajax: {
-                        url: "/api/products",
-                        dataSrc: ""
-                    },
-                    columns: [
+            var table = $("#products").DataTable({
+                ajax: {
+                    url: "/api/products",
+                    dataSrc: ""
+                },
+                columns: [
                     {
                         data: "thumbnailPath",
                         orderable: false,
-                        render: function(data) {
+                        render: function (data) {
                             return "<img src='/" + data + "' class='img-responsive'/>";
                         }
                     },
@@ -55,11 +55,50 @@
                     {
                         data: "id",
                         orderable: false,
-                        render: function(data) {
-                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-product-id=" + data + ">Delete</button>";
                         }
                     }
                 ]
+            });
+
+            $("#products").on("click", ".js-delete",
+                function () {
+                    var link = $(this);
+
+                bootbox.confirm({
+                    title: "Delete",
+                    message: "Are you sure you want to delete the product?",
+                    buttons: {
+                        confirm: {
+                            label: 'Delete',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'Cancel',
+                            className: 'btn-default'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/products/" + link.attr("data-product-id"),
+                                method: "DELETE"
+                            })
+                        .done(function () {
+                            toastr.success("Product successfully deleted.");
+                                    link.parents("tr").fadeOut(function() {
+                                        (this).remove();
+                                    });
+                                })
+                        .fail(function () {
+                            toastr.error("Something unexpected happend.");
+
+                        });
+                        }
+
+                    }
+                });
             });
         });
     </script>
