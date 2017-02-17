@@ -58,6 +58,7 @@ textarea {
 }
 
 tbody > tr > td {
+    max-width: 150px;
     vertical-align: middle !important;
     text-align: center;
 }
