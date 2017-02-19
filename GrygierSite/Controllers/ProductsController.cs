@@ -1,21 +1,20 @@
 ﻿using AutoMapper;
-using GrygierSite.Models;
-using GrygierSite.ViewModels;
+using GrygierSite.Core;
+using GrygierSite.Core.Models;
+using GrygierSite.Core.ViewModels;
 using System;
-using System.Data.Entity;
 using System.IO;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace GrygierSite.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ProductsController()
+        public ProductsController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         [Authorize]
@@ -23,7 +22,7 @@ namespace GrygierSite.Controllers
         {
             var viewModel = new ProductFormViewModel
             {
-                Categories = _context.Categories.Where(c => c.Id != 2).ToList(),
+                Categories = _unitOfWork.Categories.GetLastChildCategories(),
                 Title = "Add new product",
                 Action = "Create"
             };
@@ -38,7 +37,7 @@ namespace GrygierSite.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Categories = _context.Categories.Where(c => c.Id != 2).ToList();
+                viewModel.Categories = _unitOfWork.Categories.GetLastChildCategories();
                 return View("ProductForm", viewModel);
             }
 
@@ -47,17 +46,15 @@ namespace GrygierSite.Controllers
             var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
             product.LastUpdate = product.DateOfIssue = DateTime.Now;
 
-            _context.Products.Add(product);
-            _context.SaveChanges();
+            _unitOfWork.Products.Add(product);
+            _unitOfWork.Complete();
 
             return RedirectToAction("Dashboard", "Admin");
         }
 
         public ActionResult Details(int id)
         {
-            var product = _context.Products
-                .Include(p => p.Category)
-                .Single(p => p.Id == id);
+            var product = _unitOfWork.Products.GetProductWithCategory(id);
 
             var viewModel = Mapper.Map<Product, DetailsViewModel>(product);
             viewModel.AuthenticatedUser = User.Identity.IsAuthenticated;
@@ -68,11 +65,12 @@ namespace GrygierSite.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var product = _context.Products.Single(p => p.Id == id);
+            var product = _unitOfWork.Products.GetProduct(id);
 
-            var viewModel = new ProductFormViewModel(product)
+            var viewModel = new ProductFormViewModel()
             {
-                Categories = _context.Categories.Where(c => c.Id != 2).ToList(),
+                Product = product,
+                Categories = _unitOfWork.Categories.GetLastChildCategories(),
                 Title = "Update product",
                 Action = "Edit"
             };
@@ -86,16 +84,16 @@ namespace GrygierSite.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Categories = _context.Categories.Where(c => c.Id != 2).ToList();
+                viewModel.Categories = _unitOfWork.Categories.GetLastChildCategories();
                 return View("ProductForm", viewModel);
             }
 
-            var productFromDb = _context.Products.Single(p => p.Id == viewModel.Id);
+            var productFromDb = _unitOfWork.Products.GetProduct(viewModel.Product.Id);
 
-            Mapper.Map<ProductFormViewModel, Product>(viewModel, productFromDb);
+            Mapper.Map(viewModel, productFromDb);
             productFromDb.LastUpdate = DateTime.Now;
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
 
             return RedirectToAction("Index", "Home");
         }

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace GrygierSite.ViewModels
+namespace GrygierSite.Core.ViewModels
 {
     public class ChangePasswordViewModel
     {

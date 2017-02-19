@@ -1,8 +1,9 @@
 ﻿using System;
+using GrygierSite.Core.Models;
 
-namespace GrygierSite.Dtos
+namespace GrygierSite.Core.ViewModels
 {
-    public class ProductDto
+    public class DetailsViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -11,7 +12,8 @@ namespace GrygierSite.Dtos
         public DateTime LastUpdate { get; set; }
         public string MarketUrl { get; set; }
         public decimal Price { get; set; }
-        public CategoryDto Category { get; set; }
         public string ThumbnailPath { get; set; }
+        public Category Category { get; set; }
+        public bool AuthenticatedUser { get; set; }
     }
 }

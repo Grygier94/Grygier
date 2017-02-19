@@ -1,4 +1,4 @@
-﻿namespace GrygierSite.Dtos
+﻿namespace GrygierSite.Core.Dtos
 {
     public class CategoryDto
     {

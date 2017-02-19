@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GrygierSite.Models
+namespace GrygierSite.Core.Models
 {
     public class Category
     {

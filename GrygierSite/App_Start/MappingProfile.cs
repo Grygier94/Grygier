@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using GrygierSite.Dtos;
-using GrygierSite.Models;
-using GrygierSite.ViewModels;
+using GrygierSite.Core.Dtos;
+using GrygierSite.Core.Models;
+using GrygierSite.Core.ViewModels;
 
 namespace GrygierSite
 {

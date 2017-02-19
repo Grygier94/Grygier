@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using GrygierSite.Dtos;
-using GrygierSite.Models;
+using GrygierSite.Core;
+using GrygierSite.Core.Dtos;
+using GrygierSite.Core.Models;
 using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 
@@ -11,16 +11,16 @@ namespace GrygierSite.Controllers.Api
     [Authorize]
     public class ProductsController : ApiController
     {
-        private ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ProductsController()
+        public ProductsController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         public IHttpActionResult GetProducts(string query = null)
         {
-            var products = _context.Products.Include(p => p.Category);
+            var products = _unitOfWork.Products.GetProductsWithCategory();
 
             if (!String.IsNullOrWhiteSpace(query))
                 products = products.Where(c => c.Name.Contains(query));
@@ -34,9 +34,7 @@ namespace GrygierSite.Controllers.Api
 
         public IHttpActionResult GetProduct(int id)
         {
-            var product = _context.Products
-                .Include(p => p.Category)
-                .SingleOrDefault(p => p.Id == id);
+            var product = _unitOfWork.Products.GetProductWithCategory(id);
 
             return Ok(Mapper.Map<Product, ProductDto>(product));
         }
@@ -44,13 +42,13 @@ namespace GrygierSite.Controllers.Api
         [HttpDelete]
         public IHttpActionResult DeleteProduct(int id)
         {
-            var product = _context.Products.SingleOrDefault(p => p.Id == id);
+            var product = _unitOfWork.Products.GetProduct(id);
 
             if (product == null)
                 return NotFound();
 
-            _context.Products.Remove(product);
-            _context.SaveChanges();
+            _unitOfWork.Products.Remove(product);
+            _unitOfWork.Complete();
 
             return Ok("Resource deleted successfully!");
         }

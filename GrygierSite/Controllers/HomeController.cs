@@ -1,21 +1,21 @@
-﻿using GrygierSite.Models;
-using System.Linq;
+﻿using GrygierSite.Persistence;
 using System.Web.Mvc;
+using GrygierSite.Core;
 
 namespace GrygierSite.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController()
+        public HomeController(IUnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unitOfWork;
         }
 
         public ActionResult Index()
         {
-            return View(_context.Products.ToList());
+            return View(_unitOfWork.Products.GetProducts());
         }
 
         public ActionResult About()

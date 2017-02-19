@@ -1,9 +1,9 @@
-﻿using GrygierSite.ViewModels;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using GrygierSite.Core.ViewModels;
 
 namespace GrygierSite.Controllers
 {

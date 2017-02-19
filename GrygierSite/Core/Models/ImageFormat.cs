@@ -1,8 +1,8 @@
-﻿using GrygierSite.ViewModels;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.IO;
+using GrygierSite.Core.ViewModels;
 
-namespace GrygierSite.Models
+namespace GrygierSite.Core.Models
 {
     public class ImageFormat : ValidationAttribute
     {
