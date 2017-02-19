@@ -27,41 +27,7 @@
 {
     <script>
         $(document).ready(function() {
-            $(".js-delete-product").click(function (e) {
-                var link = $(e.target);
-
-                bootbox.confirm({
-                    title: "Delete",
-                    message: "Are you sure you want to delete the product?",
-                    buttons: {
-                        confirm: {
-                            label: 'Delete',
-                            className: 'btn-danger'
-                        },
-                        cancel: {
-                            label: 'Cancel',
-                            className: 'btn-default'
-                        }
-                    },
-                    callback: function (result) {
-                        if (result) {
-                            $.ajax({
-                                url: "/api/products/" + link.attr("data-product-id"),
-                                method: "DELETE"
-                            })
-                        .done(function () {
-                            toastr.success("Product successfully deleted.");
-                            window.location.href = "/home/index";
-                        })
-                        .fail(function () {
-                            toastr.error("Something unexpected happend.");
-                            
-                        });
-                        }
-
-                    }
-                });
-            });
+            ProductsController.init();
         });
     </script>
 }

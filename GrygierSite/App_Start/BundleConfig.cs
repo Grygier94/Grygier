@@ -16,6 +16,11 @@ namespace GrygierSite
                         "~/Scripts/datatables/jquery.datatables.js",
                         "~/Scripts/datatables/datatables.bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/app/services/productService.js",
+                "~/Scripts/app/controllers/productsController.js"
+            ));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
