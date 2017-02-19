@@ -250,6 +250,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\EntityConfigurations\CategoryConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\ProductConfiguration.cs" />
     <Compile Include="Persistence\Migrations\201702121900272_Init.cs" />
     <Compile Include="Persistence\Migrations\201702121900272_Init.Designer.cs">
       <DependentUpon>201702121900272_Init.cs</DependentUpon>
@@ -282,7 +284,7 @@
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\Models\Category.cs" />
     <Compile Include="Core\Models\ApplicationUser.cs" />
-    <Compile Include="Core\Models\ImageFormat.cs" />
+    <Compile Include="Core\Validators\ImageFormat.cs" />
     <Compile Include="Core\Models\Product.cs" />
     <Compile Include="Core\Repositories\IProductRepository.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />

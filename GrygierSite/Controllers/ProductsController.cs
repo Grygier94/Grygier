@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using GrygierSite.Core;
-using GrygierSite.Core.Models;
+﻿using GrygierSite.Core;
 using GrygierSite.Core.ViewModels;
 using System;
 using System.IO;
@@ -43,7 +41,8 @@ namespace GrygierSite.Controllers
 
             viewModel.Thumbnail.SaveAs(Path.Combine(Server.MapPath("~/"), viewModel.GetThumbnailPath()));
 
-            var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
+            var product = viewModel.Product;
+            product.ThumbnailPath = viewModel.GetThumbnailPath();
             product.LastUpdate = product.DateOfIssue = DateTime.Now;
 
             _unitOfWork.Products.Add(product);
@@ -56,8 +55,11 @@ namespace GrygierSite.Controllers
         {
             var product = _unitOfWork.Products.GetProductWithCategory(id);
 
-            var viewModel = Mapper.Map<Product, DetailsViewModel>(product);
-            viewModel.AuthenticatedUser = User.Identity.IsAuthenticated;
+            var viewModel = new DetailsViewModel
+            {
+                Product = product,
+                AuthenticatedUser = User.Identity.IsAuthenticated
+            };
 
             return View(viewModel);
         }
@@ -89,8 +91,7 @@ namespace GrygierSite.Controllers
             }
 
             var productFromDb = _unitOfWork.Products.GetProduct(viewModel.Product.Id);
-
-            Mapper.Map(viewModel, productFromDb);
+            productFromDb = viewModel.Product;
             productFromDb.LastUpdate = DateTime.Now;
 
             _unitOfWork.Complete();

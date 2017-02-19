@@ -3,24 +3,24 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@Model.Name - @Model.Category.Name</h2>
+<h2>@Model.Product.Name - @Model.Product.Category.Name</h2>
 
-<img class="img-responsive" src="~/@Model.ThumbnailPath" />
+<img class="img-responsive" src="~/@Model.Product.ThumbnailPath" />
 
 
-<p>@Model.Description</p>
+<p>@Model.Product.Description</p>
 
-<h3>@Model.Price$</h3>
+<h3>@Model.Product.Price$</h3>
 
 @if (Model.AuthenticatedUser)
 {
-    <button class="btn btn-danger js-delete-product" data-product-id="@Model.Id">Delete</button>
-    <a class="btn btn-warning" href="@Url.Action("Edit", "Products", new { id = Model.Id })">Edit</a>
+    <button class="btn btn-danger js-delete-product" data-product-id="@Model.Product.Id">Delete</button>
+    <a class="btn btn-warning" href="@Url.Action("Edit", "Products", new { id = Model.Product.Id })">Edit</a>
 }
-<a class="btn btn-success" href="@Model.MarketUrl">Go to Envato Market</a>
+<a class="btn btn-success" href="@Model.Product.MarketUrl">Go to Envato Market</a>
 
 <p class="pull-right">
-    Last udpate: @Model.LastUpdate
+    Last udpate: @Model.Product.LastUpdate
 </p>
 
 @section scripts

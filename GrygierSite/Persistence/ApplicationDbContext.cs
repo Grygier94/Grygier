@@ -1,4 +1,5 @@
 ﻿using GrygierSite.Core.Models;
+using GrygierSite.Persistence.EntityConfigurations;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
@@ -17,6 +18,14 @@ namespace GrygierSite.Persistence
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new CategoryConfiguration());
+            modelBuilder.Configurations.Add(new ProductConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

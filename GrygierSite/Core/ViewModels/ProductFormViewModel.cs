@@ -1,6 +1,6 @@
 ﻿using GrygierSite.Core.Models;
+using GrygierSite.Core.Validators;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Web;
 
 namespace GrygierSite.Core.ViewModels
@@ -9,7 +9,6 @@ namespace GrygierSite.Core.ViewModels
     {
         public Product Product { get; set; }
 
-        [Display(Name = "Thumbnail")]
         [ImageFormat]
         public HttpPostedFileBase Thumbnail { get; set; }
 
