@@ -39,13 +39,16 @@ namespace GrygierSite.Controllers
                 return View("ProductForm", viewModel);
             }
 
-            viewModel.Thumbnail.SaveAs(Path.Combine(Server.MapPath("~/"), viewModel.GetThumbnailPath()));
 
             var product = viewModel.Product;
             product.ThumbnailPath = viewModel.GetThumbnailPath();
             product.LastUpdate = product.DateOfIssue = DateTime.Now;
 
             _unitOfWork.Products.Add(product);
+            _unitOfWork.Complete();
+
+            viewModel.Thumbnail.SaveAs(Path.Combine(Server.MapPath("~/"), viewModel.GetThumbnailPath()));
+            product.ThumbnailPath = viewModel.GetThumbnailPath();
             _unitOfWork.Complete();
 
             return RedirectToAction("Dashboard", "Admin");

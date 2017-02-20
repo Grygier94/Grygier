@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace GrygierSite.Core.Models
 {
@@ -9,10 +10,14 @@ namespace GrygierSite.Core.Models
         public string Description { get; set; }
         public DateTime DateOfIssue { get; set; }
         public DateTime LastUpdate { get; set; }
-        public string MarketUrl { get; set; }
-        public byte CategoryId { get; set; }
         public decimal Price { get; set; }
         public Category Category { get; set; }
         public string ThumbnailPath { get; set; }
+
+        [Display(Name = "Market URL")]
+        public string MarketUrl { get; set; }
+
+        [Display(Name = "Category")]
+        public byte CategoryId { get; set; }
     }
 }

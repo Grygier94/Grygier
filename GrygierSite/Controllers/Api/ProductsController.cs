@@ -3,6 +3,7 @@ using GrygierSite.Core;
 using GrygierSite.Core.Dtos;
 using GrygierSite.Core.Models;
 using System;
+using System.IO;
 using System.Linq;
 using System.Web.Http;
 
@@ -46,6 +47,10 @@ namespace GrygierSite.Controllers.Api
 
             if (product == null)
                 return NotFound();
+
+            var path = System.Web.HttpContext.Current.Server.MapPath("~/") + product.ThumbnailPath;
+            if (File.Exists(path))
+                File.Delete(path);
 
             _unitOfWork.Products.Remove(product);
             _unitOfWork.Complete();

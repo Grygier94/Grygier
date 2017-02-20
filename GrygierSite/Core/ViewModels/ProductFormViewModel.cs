@@ -1,5 +1,6 @@
 ﻿using GrygierSite.Core.Models;
 using GrygierSite.Core.Validators;
+using System;
 using System.Collections.Generic;
 using System.Web;
 
@@ -14,7 +15,7 @@ namespace GrygierSite.Core.ViewModels
 
         public string GetThumbnailPath()
         {
-            return "Content/Images/" + Thumbnail.FileName;
+            return "Content/Images/Thumbnail-" + Product.Id + Thumbnail.FileName.Substring(Thumbnail.FileName.LastIndexOf(".", StringComparison.Ordinal));
         }
 
         public IEnumerable<Category> Categories { get; set; }
