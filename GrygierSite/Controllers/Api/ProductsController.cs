@@ -37,6 +37,9 @@ namespace GrygierSite.Controllers.Api
         {
             var product = _unitOfWork.Products.GetProductWithCategory(id);
 
+            if (product == null)
+                return NotFound();
+
             return Ok(Mapper.Map<Product, ProductDto>(product));
         }
 

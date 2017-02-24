@@ -1,7 +1,7 @@
 ﻿using GrygierSite.Core;
+using GrygierSite.Core.Models;
 using GrygierSite.Core.ViewModels;
 using System;
-using System.IO;
 using System.Web.Mvc;
 
 namespace GrygierSite.Controllers
@@ -20,6 +20,7 @@ namespace GrygierSite.Controllers
         {
             var viewModel = new ProductFormViewModel
             {
+                Product = new Product(),
                 Categories = _unitOfWork.Categories.GetLastChildCategories(),
                 Title = "Add new product",
                 Action = "Create"
@@ -39,7 +40,6 @@ namespace GrygierSite.Controllers
                 return View("ProductForm", viewModel);
             }
 
-
             var product = viewModel.Product;
             product.ThumbnailPath = viewModel.GetThumbnailPath();
             product.LastUpdate = product.DateOfIssue = DateTime.Now;
@@ -47,7 +47,7 @@ namespace GrygierSite.Controllers
             _unitOfWork.Products.Add(product);
             _unitOfWork.Complete();
 
-            viewModel.Thumbnail.SaveAs(Path.Combine(Server.MapPath("~/"), viewModel.GetThumbnailPath()));
+            viewModel.SaveThumbnailOnServer();
             product.ThumbnailPath = viewModel.GetThumbnailPath();
             _unitOfWork.Complete();
 
@@ -85,6 +85,7 @@ namespace GrygierSite.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(ProductFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -94,8 +95,15 @@ namespace GrygierSite.Controllers
             }
 
             var productFromDb = _unitOfWork.Products.GetProduct(viewModel.Product.Id);
-            productFromDb = viewModel.Product;
+
+            productFromDb.CategoryId = viewModel.Product.CategoryId;
+            productFromDb.Description = viewModel.Product.Description;
+            productFromDb.MarketUrl = viewModel.Product.MarketUrl;
+            productFromDb.Name = viewModel.Product.Name;
+            productFromDb.Price = viewModel.Product.Price;
             productFromDb.LastUpdate = DateTime.Now;
+
+            viewModel.SaveThumbnailOnServer();
 
             _unitOfWork.Complete();
 

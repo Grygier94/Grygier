@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GrygierSite.Core.ViewModels;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
-using GrygierSite.Core.ViewModels;
 
 namespace GrygierSite.Core.Validators
 {
@@ -8,12 +9,15 @@ namespace GrygierSite.Core.Validators
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var product = (ProductFormViewModel)validationContext.ObjectInstance;
+            var productFormViewModel = (ProductFormViewModel)validationContext.ObjectInstance;
 
-            if (product.Thumbnail == null)
+            if (productFormViewModel.Thumbnail == null && String.IsNullOrWhiteSpace(productFormViewModel.Product.ThumbnailPath))
                 return new ValidationResult("Thumbnail is required.");
 
-            var extension = Path.GetExtension(product.Thumbnail.FileName);
+            if (productFormViewModel.Thumbnail == null)
+                return ValidationResult.Success;
+
+            var extension = Path.GetExtension(productFormViewModel.Thumbnail.FileName);
 
             if (string.IsNullOrWhiteSpace(extension))
                 return new ValidationResult("Wrong path. Choose proper file");
@@ -21,9 +25,10 @@ namespace GrygierSite.Core.Validators
             extension = extension.ToLower();
 
             return (extension == ".jpg" || extension == ".png" || extension == ".bmp" ||
-                extension == ".jpeg" || extension == ".gif")
+                    extension == ".jpeg" || extension == ".gif")
                 ? ValidationResult.Success
                 : new ValidationResult("Wrong image format! Available formats: .bmp, .png, .jpg. .jpeg, .gif");
+
         }
     }
 }
