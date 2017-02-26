@@ -19,12 +19,23 @@ namespace GrygierSite.Controllers.Api
             _unitOfWork = unitOfWork;
         }
 
-        public IHttpActionResult GetProducts(string query = null)
+        public IHttpActionResult GetAllProducts(string query = null)
         {
             var products = _unitOfWork.Products.GetProductsWithCategory();
 
             if (!String.IsNullOrWhiteSpace(query))
                 products = products.Where(c => c.Name.Contains(query));
+
+            var productDtos = products
+                .ToList()
+                .Select(Mapper.Map<Product, ProductDto>);
+
+            return Ok(productDtos);
+        }
+
+        public IHttpActionResult GetProducts(int page = 1)
+        {
+            var products = _unitOfWork.Products.GetProductsWithCategory(page);
 
             var productDtos = products
                 .ToList()

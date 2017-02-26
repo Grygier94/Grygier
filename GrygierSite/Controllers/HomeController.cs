@@ -1,6 +1,5 @@
-﻿using GrygierSite.Persistence;
+﻿using GrygierSite.Core;
 using System.Web.Mvc;
-using GrygierSite.Core;
 
 namespace GrygierSite.Controllers
 {
@@ -15,7 +14,7 @@ namespace GrygierSite.Controllers
 
         public ActionResult Index()
         {
-            return View(_unitOfWork.Products.GetProducts());
+            return RedirectToAction("GetProducts", "Products");
         }
 
         public ActionResult About()

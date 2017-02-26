@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using GrygierSite.Core.Models;
+using GrygierSite.Core.Repositories;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using GrygierSite.Core.Models;
-using GrygierSite.Core.Repositories;
 
 namespace GrygierSite.Persistence.Repositories
 {
@@ -15,14 +15,19 @@ namespace GrygierSite.Persistence.Repositories
             _context = context;
         }
 
-        public IEnumerable<Product> GetProducts()
-        {
-            return _context.Products.ToList();
-        }
-
         public void Add(Product product)
         {
             _context.Products.Add(product);
+        }
+
+        public void Remove(Product product)
+        {
+            _context.Products.Remove(product);
+        }
+
+        public Product GetProduct(int id)
+        {
+            return _context.Products.SingleOrDefault(p => p.Id == id);
         }
 
         public Product GetProductWithCategory(int productId)
@@ -32,19 +37,48 @@ namespace GrygierSite.Persistence.Repositories
                 .SingleOrDefault(p => p.Id == productId);
         }
 
-        public Product GetProduct(int id)
+        public IEnumerable<Product> GetProducts(int page = 1, int count = 9)
         {
-            return _context.Products.SingleOrDefault(p => p.Id == id);
+            return _context
+                .Products
+                .OrderByDescending(p => p.DateOfIssue)
+                .Skip((page - 1) * count)
+                .Take(count)
+                .ToList();
         }
 
-        public IEnumerable<Product> GetProductsWithCategory()
+        public IEnumerable<Product> GetProductsWithCategory(int page = 1, int count = 9)
         {
-            return _context.Products.Include(p => p.Category);
+            return _context
+                .Products
+                .OrderByDescending(p => p.DateOfIssue)
+                .Skip((page - 1) * count)
+                .Take(count)
+                .Include(p => p.Category)
+                .ToList();
         }
 
-        public void Remove(Product product)
+        public IEnumerable<Product> GetAllProducts()
         {
-            _context.Products.Remove(product);
+            return _context
+                .Products
+                .ToList();
+        }
+
+        public IEnumerable<Product> GetAllProductsWithCategory()
+        {
+            return _context
+                .Products
+                .Include(p => p.Category)
+                .ToList();
+        }
+
+        public IEnumerable<Product> GetProductsFromCategory(int categoryId)
+        {
+            return _context
+                .Products
+                .Where(p => p.CategoryId == categoryId)
+                .ToList();
         }
     }
 }

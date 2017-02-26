@@ -15,6 +15,15 @@ namespace GrygierSite.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        public ActionResult GetProducts(Categories category = Categories.None)
+        {
+            var products = category == Categories.None
+                ? _unitOfWork.Products.GetProducts()
+                : _unitOfWork.Products.GetProductsFromCategory((int)category);
+
+            return View(products);
+        }
+
         [Authorize]
         public ActionResult Create()
         {
@@ -108,6 +117,14 @@ namespace GrygierSite.Controllers
             _unitOfWork.Complete();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetCategories()
+        {
+            var categories = _unitOfWork.Categories.GetLastChildCategories();
+
+            return PartialView("_CategoriesNavPartial", categories);
         }
     }
 }

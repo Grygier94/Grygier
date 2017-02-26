@@ -40,16 +40,5 @@ namespace GrygierSite.Tests.Controllers.Api
 
             result.Should().BeOfType<NotFoundResult>();
         }
-
-        //[TestMethod]
-        //public void DeleteProduct_ValidRequest_ShouldReturnOk()
-        //{
-        //    var product = new Product { ThumbnailPath = @"Content/Images/Thumbnail-1.png" };
-        //    _mockRepository.Setup(r => r.GetProduct(1)).Returns(product);
-
-        //    var result = _controller.DeleteProduct(1);
-
-        //    result.Should().BeOfType<OkNegotiatedContentResult<String>>();
-        //}
     }
 }

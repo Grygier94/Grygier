@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
-using GrygierSite.Core.Models;
+﻿using GrygierSite.Core.Models;
+using System.Collections.Generic;
 
 namespace GrygierSite.Core.Repositories
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetProducts();
         void Add(Product product);
-        Product GetProductWithCategory(int productId);
-        Product GetProduct(int id);
-        IEnumerable<Product> GetProductsWithCategory();
         void Remove(Product product);
+        Product GetProduct(int id);
+        Product GetProductWithCategory(int productId);
+        IEnumerable<Product> GetProducts(int page = 1, int count = 9);
+        IEnumerable<Product> GetProductsWithCategory(int page = 1, int count = 9);
+        IEnumerable<Product> GetAllProducts();
+        IEnumerable<Product> GetAllProductsWithCategory();
+        IEnumerable<Product> GetProductsFromCategory(int categoryId, int page, int count =);
     }
 }

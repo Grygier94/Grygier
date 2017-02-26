@@ -247,6 +247,7 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Core\Dtos\CategoryDto.cs" />
     <Compile Include="Core\Dtos\ProductDto.cs" />
+    <Compile Include="Core\Models\Categories.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -569,7 +570,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Products\ProductForm.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -577,6 +577,8 @@
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Products\_CategoriesNavPartial.cshtml" />
+    <Content Include="Views\Products\GetProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

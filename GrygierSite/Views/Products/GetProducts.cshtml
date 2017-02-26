@@ -1,0 +1,22 @@
+﻿@model IEnumerable<GrygierSite.Core.Models.Product>
+@{
+    ViewBag.Title = "Grygier - Home";
+}
+
+<h1 class="index-title">~ Grygier ~</h1>
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <a href="@Url.Action("Details", "Products", new {id = product.Id})">
+                <div class="thumbnail">
+                    <div class="thumbnail-image-wrapper">
+                        <span class="product-price text-center">@product.Price$</span>
+                        <img class="img-thumbnail img-responsive" src="/@product.ThumbnailPath" />
+                    </div>
+                    <span class="product-name text-center">@product.Name</span>
+                </div>
+            </a>
+        </div>
+    }
+</div>
