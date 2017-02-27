@@ -1,6 +1,17 @@
 ﻿body {
     padding-top: 90px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
+    min-height: 100vh;
+    display: flex;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.body-content {
+    flex: 1;
+    width: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -103,7 +114,19 @@ tbody > tr > td {
 
         .footer-top input[type="submit"] {
             margin-top: 6px;
+            background-color: #E74C3C;
+            border-color: rgba(231, 76, 60, 0.9);
         }
+
+            .footer-top input[type="submit"]:hover,
+            .footer-top input[type="submit"]:focus,
+            .footer-top input[type="submit"]:active
+            
+             {
+                margin-top: 6px;
+                background-color: #D73C2C;
+                border-color: rgba(231, 76, 60, 0.9);
+            }
 
 #footer-bottom {
     background: #E3E3E3;
