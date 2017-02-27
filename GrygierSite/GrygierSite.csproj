@@ -248,12 +248,14 @@
     <Compile Include="Core\Dtos\CategoryDto.cs" />
     <Compile Include="Core\Dtos\ProductDto.cs" />
     <Compile Include="Core\Models\Categories.cs" />
+    <Compile Include="Core\Models\Tag.cs" />
     <Compile Include="Core\ViewModels\ShowProductsViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Persistence\EntityConfigurations\CategoryConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\ProductConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\TagConfiguration.cs" />
     <Compile Include="Persistence\Migrations\201702121900272_Init.cs" />
     <Compile Include="Persistence\Migrations\201702121900272_Init.Designer.cs">
       <DependentUpon>201702121900272_Init.cs</DependentUpon>
@@ -281,6 +283,14 @@
     <Compile Include="Persistence\Migrations\201702141804468_AddPriceToProduct.cs" />
     <Compile Include="Persistence\Migrations\201702141804468_AddPriceToProduct.Designer.cs">
       <DependentUpon>201702141804468_AddPriceToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\201702271946249_AddTagsTable.cs" />
+    <Compile Include="Persistence\Migrations\201702271946249_AddTagsTable.Designer.cs">
+      <DependentUpon>201702271946249_AddTagsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\201702271948407_PopulateTags.cs" />
+    <Compile Include="Persistence\Migrations\201702271948407_PopulateTags.Designer.cs">
+      <DependentUpon>201702271948407_PopulateTags.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
@@ -582,6 +592,7 @@
     <Content Include="Views\Products\ShowProducts.cshtml" />
     <Content Include="Views\Products\_Pagination.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_RecentPosts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -616,6 +627,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201702141804468_AddPriceToProduct.resx">
       <DependentUpon>201702141804468_AddPriceToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201702271946249_AddTagsTable.resx">
+      <DependentUpon>201702271946249_AddTagsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201702271948407_PopulateTags.resx">
+      <DependentUpon>201702271948407_PopulateTags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

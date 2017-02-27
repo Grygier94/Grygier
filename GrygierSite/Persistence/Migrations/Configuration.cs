@@ -1,4 +1,3 @@
-using GrygierSite.Core.Models;
 using GrygierSite.Persistence;
 
 namespace GrygierSite.Migrations
@@ -10,7 +9,7 @@ namespace GrygierSite.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            MigrationsDirectory = @"Persistence/Migrations";
+            MigrationsDirectory = @"Persistence\Migrations";
         }
 
         protected override void Seed(ApplicationDbContext context)

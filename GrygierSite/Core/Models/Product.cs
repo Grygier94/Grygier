@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace GrygierSite.Core.Models
@@ -19,5 +21,12 @@ namespace GrygierSite.Core.Models
 
         [Display(Name = "Category")]
         public byte CategoryId { get; set; }
+
+        public ICollection<Tag> Tags { get; set; }
+
+        public Product()
+        {
+            Tags = new Collection<Tag>();
+        }
     }
 }

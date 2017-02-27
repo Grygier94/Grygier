@@ -23,6 +23,7 @@ namespace GrygierSite.Persistence
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new CategoryConfiguration());
+            modelBuilder.Configurations.Add(new TagConfiguration());
             modelBuilder.Configurations.Add(new ProductConfiguration());
 
             base.OnModelCreating(modelBuilder);

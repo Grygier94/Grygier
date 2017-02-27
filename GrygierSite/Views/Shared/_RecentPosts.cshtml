@@ -1,0 +1,12 @@
+﻿@using GrygierSite.Core.Models
+@model List<Product>
+
+@foreach (Product product in Model)
+{
+    <p>
+        <a href="@Url.Action("Details", "Products", new { id = product.Id })">
+            @product.DateOfIssue.ToShortDateString() | @product.Name (@product.Category.Name)
+        </a>
+    </p>
+}
+

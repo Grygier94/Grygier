@@ -2,6 +2,7 @@
 using GrygierSite.Core.Models;
 using GrygierSite.Core.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -141,6 +142,20 @@ namespace GrygierSite.Controllers
             var categories = _unitOfWork.Categories.GetLastChildCategories();
 
             return PartialView("_CategoriesNav", categories);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetRecentPosts()
+        {
+            List<Product> products = _unitOfWork
+                                    .Products
+                                    .GetAllProductsWithCategory()
+                                    .OrderByDescending(p => p.DateOfIssue)
+                                    .Take(5)
+                                    .ToList();
+
+
+            return PartialView("_RecentPosts", products);
         }
     }
 }
