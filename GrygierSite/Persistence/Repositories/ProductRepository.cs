@@ -25,6 +25,18 @@ namespace GrygierSite.Persistence.Repositories
             _context.Products.Remove(product);
         }
 
+        public int Count()
+        {
+            return _context.Products.Count();
+        }
+
+        public int Count(int categoryId)
+        {
+            return _context
+                .Products
+                .Count(p => p.CategoryId == categoryId);
+        }
+
         public Product GetProduct(int id)
         {
             return _context.Products.SingleOrDefault(p => p.Id == id);
@@ -37,23 +49,23 @@ namespace GrygierSite.Persistence.Repositories
                 .SingleOrDefault(p => p.Id == productId);
         }
 
-        public IEnumerable<Product> GetProducts(int page = 1, int count = 9)
+        public IEnumerable<Product> GetProducts(int page = 1, int pageSize = 9)
         {
             return _context
                 .Products
                 .OrderByDescending(p => p.DateOfIssue)
-                .Skip((page - 1) * count)
-                .Take(count)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
         }
 
-        public IEnumerable<Product> GetProductsWithCategory(int page = 1, int count = 9)
+        public IEnumerable<Product> GetProductsWithCategory(int page = 1, int pageSize = 9)
         {
             return _context
                 .Products
                 .OrderByDescending(p => p.DateOfIssue)
-                .Skip((page - 1) * count)
-                .Take(count)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .Include(p => p.Category)
                 .ToList();
         }
@@ -73,11 +85,14 @@ namespace GrygierSite.Persistence.Repositories
                 .ToList();
         }
 
-        public IEnumerable<Product> GetProductsFromCategory(int categoryId)
+        public IEnumerable<Product> GetProductsFromCategory(int categoryId, int page = 1, int pageSize = 9)
         {
             return _context
                 .Products
                 .Where(p => p.CategoryId == categoryId)
+                .OrderBy(p => p.DateOfIssue)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
         }
     }

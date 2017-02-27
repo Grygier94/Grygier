@@ -11,8 +11,8 @@ namespace GrygierSite
 
             routes.MapRoute(
                 name: "ByCategory",
-                url: "{controller}/{action}/{category}",
-                defaults: new { controller = "Home", action = "Index", category = UrlParameter.Optional }
+                url: "{controller}/{action}/{category}/{page}",
+                defaults: new { controller = "Home", action = "Index", category = UrlParameter.Optional, page = UrlParameter.Optional }
             );
 
             routes.MapRoute(

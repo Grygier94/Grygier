@@ -2,6 +2,7 @@
 using GrygierSite.Core.Models;
 using GrygierSite.Core.ViewModels;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace GrygierSite.Controllers
@@ -15,13 +16,28 @@ namespace GrygierSite.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public ActionResult GetProducts(Categories category = Categories.None)
+        public ActionResult GetProducts(Categories category = Categories.All, int page = 1)
         {
-            var products = category == Categories.None
-                ? _unitOfWork.Products.GetProducts()
-                : _unitOfWork.Products.GetProductsFromCategory((int)category);
+            var products = category == Categories.All
+                ? _unitOfWork.Products.GetProducts(page).ToList()
+                : _unitOfWork.Products.GetProductsFromCategory((int)category, page).ToList();
 
-            return View(products);
+            var viweModel = new ShowProductsViewModel
+            {
+                Products = products,
+                Title = "~ Grygier ~",
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count() / 9)) + 1,
+                Category = category
+            };
+
+            if (category != Categories.All)
+            {
+                viweModel.Title = _unitOfWork.Categories.GetCategoryName((int)category);
+                viweModel.TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count((int)category) / 9)) + 1;
+            }
+
+            return View("ShowProducts", viweModel);
         }
 
         [Authorize]
@@ -124,7 +140,7 @@ namespace GrygierSite.Controllers
         {
             var categories = _unitOfWork.Categories.GetLastChildCategories();
 
-            return PartialView("_CategoriesNavPartial", categories);
+            return PartialView("_CategoriesNav", categories);
         }
     }
 }

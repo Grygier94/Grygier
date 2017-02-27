@@ -1,0 +1,35 @@
+﻿<footer>
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-group">
+                            <h3>Subscription</h3>
+                            <p>Subscribe to our newsletter, we won't spam you!</p>
+                            <input type="text" class="form-control" placeholder="Your Name" />
+                            <input type="text" class="form-control" placeholder="Your Email" />
+                            <input type="submit" value="Subscribe" class="btn btn-primary form-control" />
+                        </div>
+                    }
+                    <hr class="visible-sm"/>
+                </div>
+                <div class="col-md-4">
+                    <h3>Tags</h3>
+                    <hr class="visible-xs visible-sm" />
+                </div>
+                <div class="col-md-4">
+                    <h3>Recent Posts</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-bottom">
+        <div class="container">
+            <p> &copy; @DateTime.Now.Year Grygier. All Rights Reserved</p>
+        </div>
+    </div>
+
+</footer>

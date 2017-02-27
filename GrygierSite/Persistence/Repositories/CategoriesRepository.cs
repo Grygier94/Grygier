@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using GrygierSite.Core.Models;
+﻿using GrygierSite.Core.Models;
 using GrygierSite.Core.Repositories;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GrygierSite.Persistence.Repositories
 {
@@ -12,6 +12,11 @@ namespace GrygierSite.Persistence.Repositories
         public CategoriesRepository(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public string GetCategoryName(int categoryId)
+        {
+            return _context.Categories.Single(c => c.Id == categoryId).Name;
         }
 
         public IEnumerable<Category> GetLastChildCategories()

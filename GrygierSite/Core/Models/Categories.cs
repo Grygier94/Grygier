@@ -2,7 +2,7 @@
 {
     public enum Categories
     {
-        None = 0,
+        All = 0,
         Tempaltes = 1,
         Backgrounds = 3,
         Characters = 4,

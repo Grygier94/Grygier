@@ -33,16 +33,16 @@ namespace GrygierSite.Controllers.Api
             return Ok(productDtos);
         }
 
-        public IHttpActionResult GetProducts(int page = 1)
-        {
-            var products = _unitOfWork.Products.GetProductsWithCategory(page);
+        //public IHttpActionResult GetProducts(int page = 1)
+        //{
+        //    var products = _unitOfWork.Products.GetProductsWithCategory(page);
 
-            var productDtos = products
-                .ToList()
-                .Select(Mapper.Map<Product, ProductDto>);
+        //    var productDtos = products
+        //        .ToList()
+        //        .Select(Mapper.Map<Product, ProductDto>);
 
-            return Ok(productDtos);
-        }
+        //    return Ok(productDtos);
+        //}
 
         public IHttpActionResult GetProduct(int id)
         {

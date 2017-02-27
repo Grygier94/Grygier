@@ -120,6 +120,10 @@ textarea.form-control {
     border-radius: 0;
 }
 
+.nav-pagination {
+    text-align: center;
+}
+
 /* WIDTH > 768 */
 
 @media (min-width: 768px) {

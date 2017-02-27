@@ -1,6 +1,6 @@
 ﻿body {
     padding-top: 90px;
-    padding-bottom: 20px;
+    padding-bottom: 0px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -76,5 +76,41 @@ tbody > tr > td {
 
 .category {
     padding-right: 20px;
+}
 
+.footer-top {
+    margin-top: 20px;
+    background: #f8f8f8;
+    height: auto;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+    border-top: 1px solid #DDDDDD;
+    text-align: center;
+}
+
+    .footer-top h3 {
+        margin-top: 5px;
+    }
+
+    .footer-top input {
+        margin-top: 2px;
+        max-width: none;
+        width: 100%;
+    }
+
+        .footer-top input[type="submit"] {
+            margin-top: 6px;
+        }
+
+#footer-bottom {
+    background: #E3E3E3;
+    border-top: 1px solid #DDDDDD;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    width: 100%;
+    margin: 0;
 }
