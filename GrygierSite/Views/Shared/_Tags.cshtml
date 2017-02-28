@@ -1,0 +1,8 @@
+﻿@model IEnumerable<GrygierSite.Core.Models.Tag>
+
+<div class="tags">
+    @foreach (var tag in Model)
+    {
+        @Html.ActionLink(tag.Name, "GetProductsByTag", "Products", new { tagName = tag.Name}, new { @class = "btn btn-default btn-xs" });
+    }
+</div>

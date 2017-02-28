@@ -37,6 +37,13 @@ namespace GrygierSite.Persistence.Repositories
                 .Count(p => p.CategoryId == categoryId);
         }
 
+        public int Count(string tag)
+        {
+            return _context
+                .Products
+                .Count(p => p.Tags.FirstOrDefault(t => t.Name == tag).Name == tag);
+        }
+
         public Product GetProduct(int id)
         {
             return _context.Products.SingleOrDefault(p => p.Id == id);
@@ -82,6 +89,14 @@ namespace GrygierSite.Persistence.Repositories
             return _context
                 .Products
                 .Include(p => p.Category)
+                .ToList();
+        }
+
+        public IEnumerable<Product> GetProductsWithTag(string tagName, int page = 9)
+        {
+            return _context
+                .Products
+                .Where(p => p.Tags.FirstOrDefault(t => t.Name == tagName).Name == tagName)
                 .ToList();
         }
 

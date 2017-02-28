@@ -10,6 +10,12 @@ namespace GrygierSite
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "ByTag",
+                url: "{controller}/{action}/{tagName}/{page}",
+                defaults: new { controller = "Home", action = "Index", tagName = UrlParameter.Optional, page = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "ByCategory",
                 url: "{controller}/{action}/{category}/{page}",
                 defaults: new { controller = "Home", action = "Index", category = UrlParameter.Optional, page = UrlParameter.Optional }

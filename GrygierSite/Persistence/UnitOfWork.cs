@@ -1,5 +1,4 @@
 ﻿using GrygierSite.Core;
-using GrygierSite.Core.Models;
 using GrygierSite.Core.Repositories;
 using GrygierSite.Persistence.Repositories;
 
@@ -11,12 +10,14 @@ namespace GrygierSite.Persistence
 
         public IProductRepository Products { get; }
         public ICategoriesRepository Categories { get; }
+        public ITagsRepository Tags { get; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             Products = new ProductRepository(_context);
             Categories = new CategoriesRepository(_context);
+            Tags = new TagsRepository(_context);
         }
 
         public void Complete()

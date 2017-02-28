@@ -106,7 +106,24 @@ tbody > tr > td {
         margin-top: 5px;
     }
 
-    .footer-top input {
+    .footer-top .tags {
+        display: flex;
+        -o-justify-content: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -moz-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        -o-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .footer-top .tags a {
+        font-size: 14px;
+        margin: 2px;
+    }
+
+.footer-top input {
         margin-top: 2px;
         max-width: none;
         width: 100%;

@@ -23,22 +23,42 @@ namespace GrygierSite.Controllers
                 ? _unitOfWork.Products.GetProducts(page).ToList()
                 : _unitOfWork.Products.GetProductsFromCategory((int)category, page).ToList();
 
-            var viweModel = new ShowProductsViewModel
+            var viewModel = new ShowProductsViewModel
             {
                 Products = products,
                 Title = "~ Grygier ~",
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count() / 9)) + 1,
-                Category = category
+                Category = category,
+                Action = "GetProducts"
             };
 
             if (category != Categories.All)
             {
-                viweModel.Title = _unitOfWork.Categories.GetCategoryName((int)category);
-                viweModel.TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count((int)category) / 9)) + 1;
+                viewModel.Title = _unitOfWork.Categories.GetCategoryName((int)category);
+                viewModel.TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count((int)category) / 9)) + 1;
             }
 
-            return View("ShowProducts", viweModel);
+            return View("ShowProducts", viewModel);
+        }
+
+        public ActionResult GetProductsByTag(string tagName, int page = 1)
+        {
+            Tag tag = _unitOfWork.Tags.GetTag(tagName);
+
+            var products = _unitOfWork.Products.GetProductsWithTag(tagName);
+
+            var viewModel = new ShowProductsViewModel
+            {
+                Products = products,
+                Title = $"Tag - {tag.Name}",
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count(tagName) / 9)) + 1,
+                TagName = tagName,
+                Action = "GetProductsByTag"
+            };
+
+            return View("ShowProducts", viewModel);
         }
 
         [Authorize]
@@ -156,6 +176,13 @@ namespace GrygierSite.Controllers
 
 
             return PartialView("_RecentPosts", products);
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetTags()
+        {
+            var tags = _unitOfWork.Tags.GetTags(16);
+            return PartialView("_Tags", tags);
         }
     }
 }
