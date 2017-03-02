@@ -53,6 +53,7 @@ namespace GrygierSite.Persistence.Repositories
         {
             return _context.Products
                 .Include(p => p.Category)
+                .Include(p => p.Tags)
                 .SingleOrDefault(p => p.Id == productId);
         }
 

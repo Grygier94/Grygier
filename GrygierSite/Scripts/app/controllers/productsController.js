@@ -1,55 +1,22 @@
 ﻿
-var ProductsController = function (productService) {
+var ProductsController = function () {
 
     var init = function () {
-        $("#products").on("click", ".js-delete", deleteProduct);
-        $(".js-delete-product").click(deleteProduct);
+        $(".body-content").on("click", ".nav-pagination a", loadProducts);
     };
 
-    var deleteProduct = function () {
+    var loadProducts = function () {
 
-        var link = $(this);
-        var showDialogBox = function() {
-            bootbox.confirm({
-                title: "Delete",
-                message: "Are you sure you want to delete the product?",
-                buttons: {
-                    confirm: {
-                        label: 'Delete',
-                        className: 'btn-danger'
-                    },
-                    cancel: {
-                        label: 'Cancel',
-                        className: 'btn-default'
-                    }
-                },
-                callback: function(result) {
-                    if (result) {
-                        var productId = link.attr("data-product-id");
-                        productService.deleteProduct(productId, done, fail);
-                    }
-                }
-            });
-        }();
+        var link = $(this),
+        url = link.attr("href");
 
-        var done = function() {
-            toastr.success("Product successfully deleted.");
-            if (window.location.href.indexOf("Admin/Dashboard") === -1) {
-                window.location.href = "/home/index";
-            } else {
-                link.parents("tr").fadeOut(function () {
-                    (this).remove();
-                });
-            }
-        };
+        $(".body-content").load(url);
 
-        var fail = function() {
-            toastr.error("Something unexpected happend.");
-        };
+        return false;
     }
 
     return {
         init: init
     }
 
-}(ProductService);
+}();

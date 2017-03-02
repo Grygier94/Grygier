@@ -249,7 +249,9 @@
     <Compile Include="Core\Dtos\ProductDto.cs" />
     <Compile Include="Core\Models\Categories.cs" />
     <Compile Include="Core\Models\PagingInfo.cs" />
+    <Compile Include="Core\Models\Subscriber.cs" />
     <Compile Include="Core\Models\Tag.cs" />
+    <Compile Include="Core\Repositories\ISubscriberRepository.cs" />
     <Compile Include="Core\Repositories\ITagsRepository.cs" />
     <Compile Include="Core\ViewModels\ShowProductsViewModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -257,6 +259,7 @@
     </Compile>
     <Compile Include="Persistence\EntityConfigurations\CategoryConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\ProductConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\SubscriberConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\TagConfiguration.cs" />
     <Compile Include="Persistence\Migrations\201702121900272_Init.cs" />
     <Compile Include="Persistence\Migrations\201702121900272_Init.Designer.cs">
@@ -294,6 +297,10 @@
     <Compile Include="Persistence\Migrations\201702271948407_PopulateTags.Designer.cs">
       <DependentUpon>201702271948407_PopulateTags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\201703021557307_AddSubscribersTable.cs" />
+    <Compile Include="Persistence\Migrations\201703021557307_AddSubscribersTable.Designer.cs">
+      <DependentUpon>201703021557307_AddSubscribersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\Models\Category.cs" />
@@ -305,6 +312,7 @@
     <Compile Include="Persistence\Repositories\CategoriesRepository.cs" />
     <Compile Include="Core\Repositories\ICategoriesRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductRepository.cs" />
+    <Compile Include="Persistence\Repositories\SubscriberRepository.cs" />
     <Compile Include="Persistence\Repositories\TagsRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -470,6 +478,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
     <Content Include="Scripts\app\controllers\productsController.js" />
+    <Content Include="Scripts\app\controllers\adminController.js" />
     <Content Include="Scripts\app\services\productService.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -637,6 +646,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201702271948407_PopulateTags.resx">
       <DependentUpon>201702271948407_PopulateTags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201703021557307_AddSubscribersTable.resx">
+      <DependentUpon>201703021557307_AddSubscribersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

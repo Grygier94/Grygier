@@ -23,3 +23,12 @@
 </div>
 
 @Html.Partial("_Pagination", Model)
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            ProductsController.init();
+        });
+    </script>
+}

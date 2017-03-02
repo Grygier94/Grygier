@@ -18,6 +18,8 @@ namespace GrygierSite
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/app/services/productService.js",
+                "~/Scripts/app/controllers/homeController.js",
+                "~/Scripts/app/controllers/adminController.js",
                 "~/Scripts/app/controllers/productsController.js"
             ));
 

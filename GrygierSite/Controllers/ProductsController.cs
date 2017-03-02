@@ -39,6 +39,12 @@ namespace GrygierSite.Controllers
                 viewModel.TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count((int)category) / 9)) + 1;
             }
 
+            //if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            //    return PartialView("ShowProducts", viewModel);
+
+            if (Request.IsAjaxRequest())
+                return PartialView("ShowProducts", viewModel);
+
             return View("ShowProducts", viewModel);
         }
 
@@ -57,6 +63,9 @@ namespace GrygierSite.Controllers
                 TagName = tagName,
                 Action = "GetProductsByTag"
             };
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView("ShowProducts", viewModel);
 
             return View("ShowProducts", viewModel);
         }
