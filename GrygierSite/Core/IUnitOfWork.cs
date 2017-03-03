@@ -7,6 +7,7 @@ namespace GrygierSite.Core
         IProductRepository Products { get; }
         ICategoriesRepository Categories { get; }
         ITagsRepository Tags { get; }
+        ISubscriberRepository Subscribers { get; }
 
         void Complete();
     }

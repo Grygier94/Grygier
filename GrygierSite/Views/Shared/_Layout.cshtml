@@ -39,5 +39,13 @@
     @Scripts.Render("~/bundles/lib")
     @Scripts.Render("~/bundles/app")
     @RenderSection("scripts", required: false)
+
+
+    <script>
+        $(document).ready(function () {
+            SubscriberController.init();
+        });
+    </script>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
-using System.Linq;
 using GrygierSite.Core.Models;
 using GrygierSite.Core.Repositories;
+using System.Linq;
 
 namespace GrygierSite.Persistence.Repositories
 {
@@ -30,6 +30,11 @@ namespace GrygierSite.Persistence.Repositories
         public void Remove(Subscriber subscriber)
         {
             _context.Subscribers.Remove(subscriber);
+        }
+
+        public bool Contains(string email)
+        {
+            return _context.Subscribers.Select(s => s.Email).Contains(email);
         }
     }
 }

@@ -16,11 +16,11 @@ var AdminController = function (productService) {
                 buttons: {
                     confirm: {
                         label: 'Delete',
-                        className: 'btn-danger'
+                        className: "btn-danger"
                     },
                     cancel: {
-                        label: 'Cancel',
-                        className: 'btn-default'
+                        label: "Cancel",
+                        className: "btn-default"
                     }
                 },
                 callback: function(result) {

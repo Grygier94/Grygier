@@ -3,16 +3,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    @using (Html.BeginForm())
-                    {
+                    <form>
                         <div class="form-group">
                             <h3>Subscription</h3>
                             <p>Subscribe to our newsletter, we won't spam you!</p>
-                            <input type="text" class="form-control" required placeholder="Your Name" />
-                            <input type="email" class="form-control" required placeholder="Your Email" />
-                            <input type="submit" value="Subscribe" class="btn btn-info form-control" />
+                            <input type="text" class="form-control js-name" required placeholder="Your Name"/>
+                            <input type="email" class="form-control js-email" required placeholder="Your Email" />
+                            <input id="submit-subscribe" type="submit" value="Subscribe" class="btn btn-info form-control"/>
                         </div>
-                    }
+                    </form>
                     <hr class="visible-sm"/>
                 </div>
                 <div class="col-md-4">

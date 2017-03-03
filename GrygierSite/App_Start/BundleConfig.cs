@@ -18,9 +18,11 @@ namespace GrygierSite
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/app/services/productService.js",
+                "~/Scripts/app/services/subscriptionService.js",
                 "~/Scripts/app/controllers/homeController.js",
                 "~/Scripts/app/controllers/adminController.js",
-                "~/Scripts/app/controllers/productsController.js"
+                "~/Scripts/app/controllers/productsController.js",
+                "~/Scripts/app/controllers/subscriberController.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

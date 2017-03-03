@@ -242,6 +242,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\Api\ProductsController.cs" />
+    <Compile Include="Controllers\Api\SubscriptionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -479,7 +480,9 @@
     <Content Include="Content\site.css" />
     <Content Include="Scripts\app\controllers\productsController.js" />
     <Content Include="Scripts\app\controllers\adminController.js" />
+    <Content Include="Scripts\app\controllers\subscriberController.js" />
     <Content Include="Scripts\app\services\productService.js" />
+    <Content Include="Scripts\app\services\subscriptionService.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

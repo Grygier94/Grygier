@@ -40,6 +40,13 @@
         @Html.TextBoxFor(vm => vm.Product.Price, new { @class = "form-control", placeholder = "0,00" })
         @Html.ValidationMessageFor(vm => vm.Product.Price)
     </div>
+    <div class="form-group">
+        <label>Tag</label>
+        <div class="tt-container">
+            <input id="tag" name="tag" type="text" class="form-control" />
+        </div>
+    </div>
+
     @Html.HiddenFor(vm => vm.Product.Id)
 
     <button type="submit" class="btn btn-primary">Save</button>

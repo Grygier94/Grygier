@@ -11,6 +11,7 @@ namespace GrygierSite.Persistence
         public IProductRepository Products { get; }
         public ICategoriesRepository Categories { get; }
         public ITagsRepository Tags { get; }
+        public ISubscriberRepository Subscribers { get; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -18,6 +19,7 @@ namespace GrygierSite.Persistence
             Products = new ProductRepository(_context);
             Categories = new CategoriesRepository(_context);
             Tags = new TagsRepository(_context);
+            Subscribers = new SubscriberRepository(_context);
         }
 
         public void Complete()

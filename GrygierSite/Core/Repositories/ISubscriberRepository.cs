@@ -7,5 +7,6 @@ namespace GrygierSite.Core.Repositories
         void Add(Subscriber subscriber);
         void Remove(Subscriber subscriber);
         void Remove(int subscriberId);
+        bool Contains(string email);
     }
 }
