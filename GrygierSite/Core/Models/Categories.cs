@@ -3,7 +3,7 @@
     public enum Categories
     {
         All = 0,
-        Tempaltes = 1,
+        Templates = 1,
         Backgrounds = 3,
         Characters = 4,
         GUI = 5,

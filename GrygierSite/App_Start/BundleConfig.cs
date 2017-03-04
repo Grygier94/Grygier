@@ -14,7 +14,8 @@ namespace GrygierSite
                         "~/Scripts/bootbox.min.js",
                         "~/Scripts/toastr.js",
                         "~/Scripts/datatables/jquery.datatables.js",
-                        "~/Scripts/datatables/datatables.bootstrap.js"));
+                        "~/Scripts/datatables/datatables.bootstrap.js",
+                        "~/Scripts/typeahead.bundle.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/app/services/productService.js",
@@ -39,6 +40,7 @@ namespace GrygierSite
                       "~/Content/bootstrap-mytheme.css",
                       "~/Content/toastr.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/typeahead.css",
                       "~/Content/site.css"));
         }
     }

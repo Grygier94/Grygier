@@ -19,6 +19,11 @@ namespace GrygierSite.Persistence.Repositories
             return _context.Tags.SingleOrDefault(t => t.Name == tag);
         }
 
+        public Tag GetTag(int tagId)
+        {
+            return _context.Tags.SingleOrDefault(t => t.Id == tagId);
+        }
+
         public IEnumerable<Tag> GetTags()
         {
             return _context.Tags;

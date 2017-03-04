@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using GrygierSite.Core.Models;
+using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace GrygierSite
@@ -12,13 +13,13 @@ namespace GrygierSite
             routes.MapRoute(
                 name: "ByTag",
                 url: "{controller}/{action}/{tagName}/{page}",
-                defaults: new { controller = "Home", action = "Index", tagName = UrlParameter.Optional, page = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", page = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "ByCategory",
                 url: "{controller}/{action}/{category}/{page}",
-                defaults: new { controller = "Home", action = "Index", category = UrlParameter.Optional, page = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", category = Categories.All, page = UrlParameter.Optional }
             );
 
             routes.MapRoute(

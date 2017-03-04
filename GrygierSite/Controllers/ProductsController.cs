@@ -96,6 +96,12 @@ namespace GrygierSite.Controllers
             }
 
             var product = viewModel.Product;
+
+            //TODO: Change viewmodel to use simple types instead of Product object
+            //TODO: Add annotations to properties for validation
+            //TODO: Map properties using automaper
+            //product.Tags = new List<Tag>();
+            //product.Tags.Add(_unitOfWork.Tags.GetTag(viewModel.Product.Tags.ToList()[0].Id));
             product.ThumbnailPath = viewModel.GetThumbnailPath();
             product.LastUpdate = product.DateOfIssue = DateTime.Now;
 
