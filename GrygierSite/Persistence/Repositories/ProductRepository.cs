@@ -98,6 +98,7 @@ namespace GrygierSite.Persistence.Repositories
             return _context
                 .Products
                 .Where(p => p.Tags.FirstOrDefault(t => t.Name == tagName).Name == tagName)
+                .OrderByDescending(p => p.DateOfIssue)
                 .ToList();
         }
 
@@ -106,7 +107,7 @@ namespace GrygierSite.Persistence.Repositories
             return _context
                 .Products
                 .Where(p => p.CategoryId == categoryId)
-                .OrderBy(p => p.DateOfIssue)
+                .OrderByDescending(p => p.DateOfIssue)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();

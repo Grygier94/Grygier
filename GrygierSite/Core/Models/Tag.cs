@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace GrygierSite.Core.Models
 {
@@ -11,7 +10,7 @@ namespace GrygierSite.Core.Models
 
         public Tag()
         {
-            Products = new Collection<Product>();
+            Products = new HashSet<Product>();
         }
     }
 }

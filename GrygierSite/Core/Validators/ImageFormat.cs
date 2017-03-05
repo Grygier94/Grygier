@@ -11,7 +11,7 @@ namespace GrygierSite.Core.Validators
         {
             var productFormViewModel = (ProductFormViewModel)validationContext.ObjectInstance;
 
-            if (productFormViewModel.Thumbnail == null && String.IsNullOrWhiteSpace(productFormViewModel.Product.ThumbnailPath))
+            if (productFormViewModel.Thumbnail == null && String.IsNullOrWhiteSpace(productFormViewModel.ThumbnailPath))
                 return new ValidationResult("Thumbnail is required.");
 
             if (productFormViewModel.Thumbnail == null)

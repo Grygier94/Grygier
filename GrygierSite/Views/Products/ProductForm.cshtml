@@ -11,19 +11,19 @@
     <p class="alert alert-info">All fields are required</p>
     @Html.AntiForgeryToken()
     <div class="form-group">
-        @Html.LabelFor(vm => vm.Product.Name)
-        @Html.TextBoxFor(vm => vm.Product.Name, new { @class = "form-control", autofocus = "autofocus", placeholder = "Fantasy backgrounds" })
-        @Html.ValidationMessageFor(vm => vm.Product.Name)
+        @Html.LabelFor(vm => vm.Name)
+        @Html.TextBoxFor(vm => vm.Name, new { @class = "form-control", autofocus = "autofocus", placeholder = "Fantasy backgrounds" })
+        @Html.ValidationMessageFor(vm => vm.Name)
     </div>
     <div class="form-group">
-        @Html.LabelFor(vm => vm.Product.Description)
-        @Html.TextAreaFor(vm => vm.Product.Description, new { @class = "form-control", placeholder = "The package contains 4 backgrounds in fantasy theme... " })
-        @Html.ValidationMessageFor(vm => vm.Product.Description)
+        @Html.LabelFor(vm => vm.Description)
+        @Html.TextAreaFor(vm => vm.Description, new { @class = "form-control", placeholder = "The package contains 4 backgrounds in fantasy theme... " })
+        @Html.ValidationMessageFor(vm => vm.Description)
     </div>
     <div class="form-group">
-        @Html.LabelFor(vm => vm.Product.CategoryId)
-        @Html.DropDownListFor(vm => vm.Product.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "", new { @class = "form-control" })
-        @Html.ValidationMessageFor(vm => vm.Product.CategoryId)
+        @Html.LabelFor(vm => vm.CategoryId)
+        @Html.DropDownListFor(vm => vm.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(vm => vm.CategoryId)
     </div>
     <div class="form-group">
         @Html.LabelFor(vm => vm.Thumbnail)
@@ -31,14 +31,14 @@
         @Html.ValidationMessageFor(vm => vm.Thumbnail)
     </div>
     <div class="form-group">
-        @Html.LabelFor(vm => vm.Product.MarketUrl)
-        @Html.TextBoxFor(vm => vm.Product.MarketUrl, new { @class = "form-control", placeholder = "https://graphicriver.net/..." })
-        @Html.ValidationMessageFor(vm => vm.Product.MarketUrl)
+        @Html.LabelFor(vm => vm.MarketUrl)
+        @Html.TextBoxFor(vm => vm.MarketUrl, new { @class = "form-control", placeholder = "https://graphicriver.net/..." })
+        @Html.ValidationMessageFor(vm => vm.MarketUrl)
     </div>
     <div class="form-group">
-        @Html.LabelFor(vm => vm.Product.Price)
-        @Html.TextBoxFor(vm => vm.Product.Price, new { @class = "form-control", placeholder = "0,00" })
-        @Html.ValidationMessageFor(vm => vm.Product.Price)
+        @Html.LabelFor(vm => vm.Price)
+        @Html.TextBoxFor(vm => vm.Price, new { @class = "form-control", placeholder = "0,00" })
+        @Html.ValidationMessageFor(vm => vm.Price)
     </div>
     <div class="form-group">
         <label>Tag</label>
@@ -49,7 +49,7 @@
             <ul required id="tags" class="list-group"></ul>
         </div>
     </div>
-        @Html.HiddenFor(vm => vm.Product.Id)
+        @Html.HiddenFor(vm => vm.Id)
 
         <button type="submit" class="btn btn-primary">Save</button>
 }
@@ -65,26 +65,29 @@
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 remote: {
-                    url: '../api/tags/?query=%QUERY',
+                    url: '/api/tags/?query=%QUERY',
                     wildcard: '%QUERY'
                 }
             });
 
             //TODO: Prevent choosing tag that are already chosen
-            //TODO: Add possibility to remove tag (small X icon at the right)
+            //TODO: Implement remove tag
             var tagIterator = 0;
             $('#tag').typeahead({
-                highlight: true
-            },
+                    highlight: true
+                },
                 {
                     name: 'tags',
                     display: 'name',
                     source: tags
                 }).on("typeahead:select",
                 function (e, tag) { 
-                    $("#tags").append("<li class='list-group-item''>" + tag.name + "</li>");
-                    $("form").append("<input name='Product.Tags[" + tagIterator + "].Name' type='hidden' value='" + tag.name + "'/>");
-                    $("form").append("<input name='Product.Tags[" + tagIterator + "].Id' type='hidden' value='" + tag.id + "'/>");
+                    $("#tags").append("<li class='list-group-item''>" + tag.name +
+                        "<button class='btn-link pull-right'>" +
+                        "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>" +
+                        "</button></li>");
+
+                    $("form").append("<input name='TagIds[" + tagIterator + "]' type='hidden' value='" + tag.id + "'/>");
                     $("#tag").typeahead("val", "");
                     tagIterator++;
                 });

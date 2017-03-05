@@ -1,4 +1,5 @@
-﻿using GrygierSite.Core;
+﻿using AutoMapper;
+using GrygierSite.Core;
 using GrygierSite.Core.Models;
 using GrygierSite.Core.ViewModels;
 using System;
@@ -28,7 +29,7 @@ namespace GrygierSite.Controllers
                 Products = products,
                 Title = "~ Grygier ~",
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count() / 9)) + 1,
+                TotalPages = (int)Math.Ceiling(_unitOfWork.Products.Count() / 9f) + 1,
                 Category = category,
                 Action = "GetProducts"
             };
@@ -36,7 +37,7 @@ namespace GrygierSite.Controllers
             if (category != Categories.All)
             {
                 viewModel.Title = _unitOfWork.Categories.GetCategoryName((int)category);
-                viewModel.TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count((int)category) / 9)) + 1;
+                viewModel.TotalPages = (int)Math.Ceiling(_unitOfWork.Products.Count((int)category) / 9f) + 1;
             }
 
             //if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
@@ -59,7 +60,7 @@ namespace GrygierSite.Controllers
                 Products = products,
                 Title = $"Tag - {tag.Name}",
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count(tagName) / 9)) + 1,
+                TotalPages = (int)Math.Ceiling(_unitOfWork.Products.Count(tagName) / 9f) + 1,
                 TagName = tagName,
                 Action = "GetProductsByTag"
             };
@@ -75,7 +76,6 @@ namespace GrygierSite.Controllers
         {
             var viewModel = new ProductFormViewModel
             {
-                Product = new Product(),
                 Categories = _unitOfWork.Categories.GetLastChildCategories(),
                 Title = "Add new product",
                 Action = "Create"
@@ -95,13 +95,14 @@ namespace GrygierSite.Controllers
                 return View("ProductForm", viewModel);
             }
 
-            var product = viewModel.Product;
+            var product = Mapper.Map<ProductFormViewModel, Product>(viewModel);
+            var tags = _unitOfWork.Tags.GetTags().Where(t => viewModel.TagIds.Contains(t.Id)).ToList();
 
-            //TODO: Change viewmodel to use simple types instead of Product object
-            //TODO: Add annotations to properties for validation
-            //TODO: Map properties using automaper
-            //product.Tags = new List<Tag>();
-            //product.Tags.Add(_unitOfWork.Tags.GetTag(viewModel.Product.Tags.ToList()[0].Id));
+            foreach (var tag in tags)
+            {
+                product.Tags.Add(tag);
+            }
+
             product.ThumbnailPath = viewModel.GetThumbnailPath();
             product.LastUpdate = product.DateOfIssue = DateTime.Now;
 
@@ -128,18 +129,16 @@ namespace GrygierSite.Controllers
             return View(viewModel);
         }
 
+        //TODO: Implement adding/removing tags in Edit form
         [Authorize]
         public ActionResult Edit(int id)
         {
             var product = _unitOfWork.Products.GetProduct(id);
 
-            var viewModel = new ProductFormViewModel()
-            {
-                Product = product,
-                Categories = _unitOfWork.Categories.GetLastChildCategories(),
-                Title = "Update product",
-                Action = "Edit"
-            };
+            var viewModel = Mapper.Map<Product, ProductFormViewModel>(product);
+            viewModel.Categories = _unitOfWork.Categories.GetLastChildCategories();
+            viewModel.Title = "Update product";
+            viewModel.Action = "Edit";
 
             return View("ProductForm", viewModel);
         }
@@ -155,13 +154,13 @@ namespace GrygierSite.Controllers
                 return View("ProductForm", viewModel);
             }
 
-            var productFromDb = _unitOfWork.Products.GetProduct(viewModel.Product.Id);
+            var productFromDb = _unitOfWork.Products.GetProduct(viewModel.Id);
 
-            productFromDb.CategoryId = viewModel.Product.CategoryId;
-            productFromDb.Description = viewModel.Product.Description;
-            productFromDb.MarketUrl = viewModel.Product.MarketUrl;
-            productFromDb.Name = viewModel.Product.Name;
-            productFromDb.Price = viewModel.Product.Price;
+            productFromDb.CategoryId = viewModel.CategoryId;
+            productFromDb.Description = viewModel.Description;
+            productFromDb.MarketUrl = viewModel.MarketUrl;
+            productFromDb.Name = viewModel.Name;
+            productFromDb.Price = viewModel.Price;
             productFromDb.LastUpdate = DateTime.Now;
 
             viewModel.SaveThumbnailOnServer();

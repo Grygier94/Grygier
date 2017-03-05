@@ -21,7 +21,7 @@ namespace GrygierSite.Controllers.Api
 
         public IHttpActionResult GetAllProducts(string query = null)
         {
-            var products = _unitOfWork.Products.GetProductsWithCategory();
+            var products = _unitOfWork.Products.GetAllProductsWithCategory();
 
             if (!String.IsNullOrWhiteSpace(query))
                 products = products.Where(c => c.Name.Contains(query));

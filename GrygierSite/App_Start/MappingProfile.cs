@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GrygierSite.Core.Dtos;
 using GrygierSite.Core.Models;
+using GrygierSite.Core.ViewModels;
 
 namespace GrygierSite
 {
@@ -8,6 +9,12 @@ namespace GrygierSite
     {
         public MappingProfile()
         {
+            // ViewModel to Model
+            Mapper.CreateMap<ProductFormViewModel, Product>();
+
+            // Model to ViewModel
+            Mapper.CreateMap<Product, ProductFormViewModel>();
+
             // Dto to Model
             Mapper.CreateMap<ProductDto, Product>();
             Mapper.CreateMap<CategoryDto, Category>();
