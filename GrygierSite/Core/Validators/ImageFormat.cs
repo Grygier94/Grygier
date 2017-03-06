@@ -28,7 +28,6 @@ namespace GrygierSite.Core.Validators
                     extension == ".jpeg" || extension == ".gif")
                 ? ValidationResult.Success
                 : new ValidationResult("Wrong image format! Available formats: .bmp, .png, .jpg. .jpeg, .gif");
-
         }
     }
 }

@@ -30,7 +30,9 @@ namespace GrygierSite.Core.ViewModels
         [Display(Name = "Category")]
         public byte CategoryId { get; set; }
 
-        public IEnumerable<int> TagIds { get; set; }
+        [Required]
+        [Display(Name = "Tags")]
+        public HashSet<int> TagIds { get; set; }
 
         [ImageFormat]
         public HttpPostedFileBase Thumbnail { get; set; }

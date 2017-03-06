@@ -72,7 +72,7 @@ namespace GrygierSite.Controllers
                 return View(model);
             }
 
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, false, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:

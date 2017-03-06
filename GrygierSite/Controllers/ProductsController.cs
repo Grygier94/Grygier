@@ -18,6 +18,7 @@ namespace GrygierSite.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        //TODO: Paging
         public ActionResult GetProducts(Categories category = Categories.All, int page = 1)
         {
             var products = category == Categories.All
@@ -129,7 +130,7 @@ namespace GrygierSite.Controllers
             return View(viewModel);
         }
 
-        //TODO: Implement adding/removing tags in Edit form
+        //TODO: Implement active tags in Edit form
         [Authorize]
         public ActionResult Edit(int id)
         {

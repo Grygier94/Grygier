@@ -5,8 +5,7 @@ namespace GrygierSite.Core.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string Username { get; set; }
 
         [Required]
         [Display(Name = "Password")]
