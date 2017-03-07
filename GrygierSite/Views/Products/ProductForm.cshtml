@@ -53,7 +53,6 @@
     </div>
     <div id="tag-ids" name="TagIds"></div>
     
-
     @Html.HiddenFor(vm => vm.Id)
 
     <button type="submit" class="btn btn-primary">Save</button>
@@ -65,72 +64,7 @@
 
     <script>
         $(document).ready(function () {
-
-            var tags = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                remote: {
-                    url: '/api/tags/?query=%QUERY',
-                    wildcard: '%QUERY'
-                }
-            });
-
-            var tagIterator = 0;
-            var tagIds = [];
-
-            $('#tag').typeahead({
-                highlight: true
-            },
-                {
-                    name: 'tags',
-                    display: 'name',
-                    source: tags
-                }).on("typeahead:select",
-                function (e, tag) {
-                    if (tagIterator > 5)
-                        toastr.error("Number of tags can't be higher than 6.");
-                    else if ($.inArray(tag.id, tagIds) !== -1)
-                        toastr.error("Selected tag was already chosen.");
-                    else {
-
-                        $("#tags").append("<li class='list-group-item''>" +
-                            tag.name +
-                            "<button type='button' id='" + tagIterator + "' class='btn-link pull-right js-remove-tag'>" +
-                            "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span>" +
-                            "</button></li>");
-
-                        $("#tag-ids").append("<input id='" + tagIterator + "' name='TagIds[" +
-                            tagIterator +
-                            "]' type='hidden' value='" +
-                            tag.id +
-                            "'/>");
-                        $("#tag").typeahead("val", "");
-                        tagIds[tagIterator] = tag.id;
-                        tagIterator++;
-                    }
-                });
-
-            $('ul').on('click', '.js-remove-tag', function () {
-                var inputToRemove = $(this).attr('id');
-
-                $(this).parent().remove();
-                $("#" + inputToRemove).remove();
-
-
-                tagIterator = 0;
-                $('#tag-ids').children('input').each(function () {
-                    $(this).attr('name', 'TagIds[' + tagIterator + "]");
-                    $(this).attr('id', tagIterator);
-                    tagIds[$(this).attr('value')] = 0;
-                    tagIterator++;
-                });
-
-                tagIterator = 0;
-                $('#tags button').each(function () {
-                    $(this).attr('id', tagIterator);
-                    tagIterator++;
-                });
-            });
+            TagController.init();
         });
     </script>
 }

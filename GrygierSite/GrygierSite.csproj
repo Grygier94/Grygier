@@ -504,6 +504,7 @@
     <Content Include="Scripts\app\controllers\productsController.js" />
     <Content Include="Scripts\app\controllers\adminController.js" />
     <Content Include="Scripts\app\controllers\subscriberController.js" />
+    <Content Include="Scripts\app\controllers\tagController.js" />
     <Content Include="Scripts\app\services\productService.js" />
     <Content Include="Scripts\app\services\subscriptionService.js" />
     <Content Include="Scripts\bloodhound.js" />

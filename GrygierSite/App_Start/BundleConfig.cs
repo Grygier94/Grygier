@@ -23,7 +23,8 @@ namespace GrygierSite
                 "~/Scripts/app/controllers/homeController.js",
                 "~/Scripts/app/controllers/adminController.js",
                 "~/Scripts/app/controllers/productsController.js",
-                "~/Scripts/app/controllers/subscriberController.js"
+                "~/Scripts/app/controllers/subscriberController.js",
+                "~/Scripts/app/controllers/tagController.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
