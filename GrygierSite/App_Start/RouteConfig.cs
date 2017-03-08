@@ -9,18 +9,26 @@ namespace GrygierSite
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //TODO: Routing
-            //routes.MapRoute(
-            //    name: "ByTag",
-            //    url: "{controller}/{action}/{tagName}/{page}",
-            //    defaults: new { controller = "Home", action = "Index", page = UrlParameter.Optional }
-            //);
+            routes.MapRoute(
+                name: "Create",
+                url: "{controller}/{action}",
+                defaults: null,
+                constraints: new { controller = "Products", action = "Create" }
+            );
 
-            //routes.MapRoute(
-            //    name: "ByCategory",
-            //    url: "{controller}/{action}/{category}/{page}",
-            //    defaults: new { controller = "Home", action = "Index", category = Categories.All, page = UrlParameter.Optional }
-            //);
+            routes.MapRoute(
+                name: "ByTag",
+                url: "{controller}/Tag-{tagName}",
+                defaults: new { action = "GetProductsByTag" },
+                constraints: new { controller = "Products", action = "GetProductsByTag" }
+            );
+
+            routes.MapRoute(
+                name: "ByCategory",
+                url: "{controller}/{category}",
+                defaults: new { action = "GetProducts" },
+                constraints: new { controller = "Products", action = "GetProducts" }
+            );
 
             routes.MapRoute(
                 name: "Default",

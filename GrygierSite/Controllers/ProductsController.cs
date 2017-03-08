@@ -18,7 +18,8 @@ namespace GrygierSite.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        //TODO: Paging
+        //TODO: Add annotation if there is no products for given tag or category
+        //TODO: Change look of hamburger icon and menu items in dropdown list
         public ActionResult GetProducts(Categories category = Categories.All, int page = 1)
         {
             var products = category == Categories.All
@@ -30,7 +31,7 @@ namespace GrygierSite.Controllers
                 Products = products,
                 Title = "~ Grygier ~",
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling(_unitOfWork.Products.Count() / 9f) + 1,
+                TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count() / 9)) + 1,
                 Category = category,
                 Action = "GetProducts"
             };
@@ -38,7 +39,7 @@ namespace GrygierSite.Controllers
             if (category != Categories.All)
             {
                 viewModel.Title = _unitOfWork.Categories.GetCategoryName((int)category);
-                viewModel.TotalPages = (int)Math.Ceiling(_unitOfWork.Products.Count((int)category) / 9f) + 1;
+                viewModel.TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count((int)category) / 9)) + 1;
             }
 
             //if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
@@ -50,6 +51,7 @@ namespace GrygierSite.Controllers
             return View("ShowProducts", viewModel);
         }
 
+        //TODO: Fix pagination of products listed by tag
         public ActionResult GetProductsByTag(string tagName, int page = 1)
         {
             Tag tag = _unitOfWork.Tags.GetTag(tagName);
@@ -61,7 +63,7 @@ namespace GrygierSite.Controllers
                 Products = products,
                 Title = $"Tag - {tag.Name}",
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling(_unitOfWork.Products.Count(tagName) / 9f) + 1,
+                TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count(tagName) / 9)) + 1,
                 TagName = tagName,
                 Action = "GetProductsByTag"
             };
@@ -87,7 +89,7 @@ namespace GrygierSite.Controllers
 
         [HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] // TODO: Saving Images on server (fix name to {name} + id
         public ActionResult Create(ProductFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
