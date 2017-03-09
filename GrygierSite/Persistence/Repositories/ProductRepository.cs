@@ -93,12 +93,14 @@ namespace GrygierSite.Persistence.Repositories
                 .ToList();
         }
 
-        public IEnumerable<Product> GetProductsWithTag(string tagName, int page = 9)
+        public IEnumerable<Product> GetProductsWithTag(string tagName, int page = 1, int pageSize = 9)
         {
             return _context
                 .Products
                 .Where(p => p.Tags.FirstOrDefault(t => t.Name == tagName).Name == tagName)
                 .OrderByDescending(p => p.DateOfIssue)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
         }
 

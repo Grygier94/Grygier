@@ -1,4 +1,5 @@
-﻿@using GrygierSite.Core.Models
+﻿@using System.Globalization
+@using GrygierSite.Core.Models
 @model GrygierSite.Core.ViewModels.ShowProductsViewModel
 @{
     ViewBag.Title = "Grygier - Home";
@@ -8,11 +9,13 @@
 <div class="row">
     @foreach (var product in Model.Products)
     {
+        var price = product.Price > 0 ? product.Price.ToString() + "$" : "FREE";
+
         <div class="col-md-4">
             <a href="@Url.Action("Details", "Products", new {id = product.Id})">
                 <div class="thumbnail">
                     <div class="thumbnail-image-wrapper">
-                        <span class="product-price text-center">@product.Price$</span>
+                        <span class="product-price text-center">@price</span>
                         <img class="img-thumbnail img-responsive" src="/@product.ThumbnailPath" />
                     </div>
                     <span class="product-name text-center">@product.Name</span>

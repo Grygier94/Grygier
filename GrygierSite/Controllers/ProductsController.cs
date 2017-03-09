@@ -31,7 +31,7 @@ namespace GrygierSite.Controllers
                 Products = products,
                 Title = "~ Grygier ~",
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count() / 9)) + 1,
+                TotalPages = (int)Math.Ceiling(_unitOfWork.Products.Count() / 9m),
                 Category = category,
                 Action = "GetProducts"
             };
@@ -39,7 +39,7 @@ namespace GrygierSite.Controllers
             if (category != Categories.All)
             {
                 viewModel.Title = _unitOfWork.Categories.GetCategoryName((int)category);
-                viewModel.TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count((int)category) / 9)) + 1;
+                viewModel.TotalPages = (int)Math.Ceiling(_unitOfWork.Products.Count((int)category) / 9m);
             }
 
             //if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
@@ -51,19 +51,18 @@ namespace GrygierSite.Controllers
             return View("ShowProducts", viewModel);
         }
 
-        //TODO: Fix pagination of products listed by tag
         public ActionResult GetProductsByTag(string tagName, int page = 1)
         {
-            Tag tag = _unitOfWork.Tags.GetTag(tagName);
+            var tag = _unitOfWork.Tags.GetTag(tagName);
 
-            var products = _unitOfWork.Products.GetProductsWithTag(tagName);
+            var products = _unitOfWork.Products.GetProductsWithTag(tagName, page);
 
             var viewModel = new ShowProductsViewModel
             {
                 Products = products,
                 Title = $"Tag - {tag.Name}",
                 CurrentPage = page,
-                TotalPages = (int)Math.Ceiling((double)(_unitOfWork.Products.Count(tagName) / 9)) + 1,
+                TotalPages = (int)Math.Ceiling(_unitOfWork.Products.Count(tagName) / 9m),
                 TagName = tagName,
                 Action = "GetProductsByTag"
             };
@@ -89,7 +88,7 @@ namespace GrygierSite.Controllers
 
         [HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken] // TODO: Saving Images on server (fix name to {name} + id
+        [ValidateAntiForgeryToken]
         public ActionResult Create(ProductFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -112,6 +111,7 @@ namespace GrygierSite.Controllers
             _unitOfWork.Products.Add(product);
             _unitOfWork.Complete();
 
+            viewModel.Id = product.Id;
             viewModel.SaveThumbnailOnServer();
             product.ThumbnailPath = viewModel.GetThumbnailPath();
             _unitOfWork.Complete();

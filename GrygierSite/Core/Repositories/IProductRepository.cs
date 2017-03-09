@@ -16,7 +16,7 @@ namespace GrygierSite.Core.Repositories
         IEnumerable<Product> GetProductsWithCategory(int page = 1, int pageSize = 9);
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Product> GetAllProductsWithCategory();
-        IEnumerable<Product> GetProductsWithTag(string tagName, int page = 9);
+        IEnumerable<Product> GetProductsWithTag(string tagName, int page = 1, int pageSize = 9);
         IEnumerable<Product> GetProductsFromCategory(int categoryId, int page = 1, int pageSize = 9);
     }
 }
