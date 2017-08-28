@@ -1,4 +1,4 @@
-# Grygier
+# Product Exhibition Website
 Simple website made with ASP.NET MVC5 for educational purposes.
 
 Application is used for product exhibition.
